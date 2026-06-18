@@ -1,66 +1,12 @@
 "use client";
 
-import React from "react";
+import { ExperienceItem } from "../domain/experience/ExperienceItem";
 
-interface TimelineItem {
-  id: string;
-  role: string;
-  company: string;
-  period: string;
-  description: string[];
-  type: "work" | "education";
+interface ExperienceProps {
+  experience: ExperienceItem[];
 }
 
-export default function Experience() {
-  const timelineData: TimelineItem[] = [
-    {
-      id: "exp-1",
-      role: "Senior Full-stack Vývojář",
-      company: "TechCorp s.r.o.",
-      period: "2024 - Současnost",
-      description: [
-        "Návrh a vývoj robustních cloudových webových aplikací za použití Next.js, Node.js a TypeScriptu.",
-        "Optimalizace databázových dotazů a indexace v PostgreSQL, což vedlo k 30% zrychlení odezvy API.",
-        "Vedení vývoje klíčových modulů aplikace a mentoring juniornějších členů týmu."
-      ],
-      type: "work"
-    },
-    {
-      id: "exp-2",
-      role: "Full-stack Vývojář",
-      company: "WebStudio CZ",
-      period: "2022 - 2024",
-      description: [
-        "Implementace komplexních e-commerce řešení na míru s integrací platebních bran (Stripe, GP webpay).",
-        "Tvorba a údržba REST API a integrace externích logistických systémů (Zásilkovna, Balíkovna).",
-        "Refaktorizace starších React aplikací do Next.js s cílem zlepšit SEO a rychlost načítání."
-      ],
-      type: "work"
-    },
-    {
-      id: "exp-3",
-      role: "Junior Frontend Developer",
-      company: "AppAgency",
-      period: "2020 - 2022",
-      description: [
-        "Kódování pixel-perfect responzivních rozhraní podle grafických předloh ve Figmě.",
-        "Vývoj interaktivních komponent v Reactu a správa globálního stavu pomocí Redux Toolkit.",
-        "Optimalizace webů pro mobilní zařízení a odstraňování cross-browser chyb."
-      ],
-      type: "work"
-    },
-    {
-      id: "edu-1",
-      role: "Informační Technologie (Bc.)",
-      company: "Vysoké učení technické",
-      period: "2017 - 2020",
-      description: [
-        "Bakalářské studium zaměřené na základy softwarového inženýrství, algoritmy, datové struktury a správu databází.",
-        "Praktické projekty zaměřené na objektově orientované programování (C++, Java) a základy webových technologií."
-      ],
-      type: "education"
-    }
-  ];
+export const Experience = ({ experience }: ExperienceProps) => {
 
   return (
     <section id="experience" className="py-24 relative overflow-hidden">
@@ -81,7 +27,7 @@ export default function Experience() {
 
         {/* Vertikální časová osa */}
         <div className="relative border-l border-zinc-200 dark:border-zinc-800 ml-4 md:ml-6 flex flex-col gap-12">
-          {timelineData.map((item) => (
+          {experience.map((item) => (
             <div key={item.id} className="relative pl-8 md:pl-10 group">
               {/* Ikona na ose */}
               <span className="absolute -left-[17px] top-1.5 flex items-center justify-center w-8 h-8 rounded-full bg-white dark:bg-zinc-950 border-2 border-zinc-200 dark:border-zinc-800 group-hover:border-brand-primary dark:group-hover:border-brand-secondary transition-colors duration-300">

@@ -1,41 +1,32 @@
 import { NextResponse } from "next/server";
+import { di } from "../../../infrastructure/di";
+import { ValidationError } from "../../../domain/errors/ValidationError";
 
 export async function POST(request: Request) {
-  try {
-    const body = await request.json();
-    const { name, email, subject, message } = body;
+	try {
+		const body = await request.json();
+		const { name, email, subject, message } = body;
 
-    // Server-side validace
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Chybí povinná pole (jméno, email nebo zpráva)." },
-        { status: 400 }
-      );
-    }
+		// Use Case očekává validaci z doménové vrstvy, proto vše delegujeme.
+		await di.submitContactFormUseCase.execute({
+			name,
+			email,
+			subject,
+			message,
+		});
 
-    // Jednoduché ověření formátu e-mailu
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Neplatný formát e-mailové adresy." },
-        { status: 400 }
-      );
-    }
+		return NextResponse.json({ success: true }, { status: 200 });
+	} catch (error: unknown) {
+		console.error("[Contact API Error]:", error);
 
-    // Simulace zpoždění odesílání e-mailu (např. odeslání přes Nodemailer / SendGrid)
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+		// Pokud je chyba vyvolaná doménovou validací, vracíme 400 Bad Request.
+		if (error instanceof ValidationError) {
+			return NextResponse.json({ error: error.message }, { status: 400 });
+		}
 
-    // Zde by v produkci bylo např. odeslání e-mailu:
-    console.log(`[Contact API] Nová zpráva od ${name} (${email}):`);
-    console.log(`Předmět: ${subject || "Bez předmětu"}`);
-    console.log(`Text: ${message}`);
-
-    return NextResponse.json({ success: true }, { status: 200 });
-  } catch (error) {
-    console.error("[Contact API Error]:", error);
-    return NextResponse.json(
-      { error: "Při zpracování zprávy došlo k chybě na serveru." },
-      { status: 500 }
-    );
-  }
+		return NextResponse.json(
+			{ error: "Při zpracování zprávy došlo k chybě na serveru." },
+			{ status: 500 },
+		);
+	}
 }
