@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 type Theme = "light" | "dark";
 
@@ -12,16 +12,14 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Výchozí téma je tmavé (dark mode), které odpovídá modernímu programátorskému stylu.
-  const [theme, setTheme] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // Synchronizace s třídou na dokumentu (která byla nastavena inline skriptem v layoutu)
-    const isDark = document.documentElement.classList.contains("dark");
-    setTheme(isDark ? "dark" : "light");
-    setMounted(true);
-  }, []);
+  // Inicializace tématu přes lazy initializer — čte třídu z DOM při prvním renderu,
+  // čímž se vyhne synchronnímu setState uvnitř useEffect.
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof document !== "undefined") {
+      return document.documentElement.classList.contains("dark") ? "dark" : "light";
+    }
+    return "dark";
+  });
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";

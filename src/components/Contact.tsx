@@ -52,7 +52,7 @@ export default function Contact() {
         setErrorMessage(data.error || "Odeslání zprávy se nezdařilo. Zkuste to prosím znovu.");
         setStatus("error");
       }
-    } catch (err) {
+    } catch {
       setErrorMessage("Došlo k chybě při komunikaci se serverem. Zkontrolujte prosím připojení.");
       setStatus("error");
     }

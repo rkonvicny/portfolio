@@ -1,38 +1,33 @@
 import { NextResponse } from "next/server";
+import { di } from "../../../infrastructure/di";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { name, email, subject, message } = body;
 
-    // Server-side validace
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Chybí povinná pole (jméno, email nebo zpráva)." },
-        { status: 400 }
-      );
-    }
-
-    // Jednoduché ověření formátu e-mailu
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Neplatný formát e-mailové adresy." },
-        { status: 400 }
-      );
-    }
-
-    // Simulace zpoždění odesílání e-mailu (např. odeslání přes Nodemailer / SendGrid)
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-
-    // Zde by v produkci bylo např. odeslání e-mailu:
-    console.log(`[Contact API] Nová zpráva od ${name} (${email}):`);
-    console.log(`Předmět: ${subject || "Bez předmětu"}`);
-    console.log(`Text: ${message}`);
+    // Use Case očekává validaci z doménové vrstvy, proto vše delegujeme.
+    await di.submitContactFormUseCase.execute({
+      name,
+      email,
+      subject,
+      message,
+    });
 
     return NextResponse.json({ success: true }, { status: 200 });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("[Contact API Error]:", error);
+    
+    // Pokud je chyba vyvolaná doménovou validací, vracíme 400 Bad Request.
+    // Pro jednoduchost (KISS) to teď testujeme dle typu nebo jen na základě zprávy, 
+    // ideálně by error instance měla vlastní DomainError třídu.
+    if (error instanceof Error && (error.message.includes("Chybí povinná pole") || error.message.includes("Neplatný formát"))) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: 400 }
+      );
+    }
+
     return NextResponse.json(
       { error: "Při zpracování zprávy došlo k chybě na serveru." },
       { status: 500 }

@@ -2,66 +2,32 @@
 
 import React from "react";
 
-interface SkillItem {
-  name: string;
-  level: number; // 0-100
+import { SkillCategory } from "../domain/skills/SkillCategory";
+
+interface SkillsProps {
+  categories: SkillCategory[];
 }
 
-interface SkillCategory {
-  title: string;
-  icon: React.ReactNode;
-  skills: SkillItem[];
-}
+const iconMap: Record<string, React.ReactNode> = {
+  frontend: (
+    <svg className="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+  ),
+  backend: (
+    <svg className="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+    </svg>
+  ),
+  devops: (
+    <svg className="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+  )
+};
 
-export default function Skills() {
-  const skillCategories: SkillCategory[] = [
-    {
-      title: "Frontend",
-      icon: (
-        <svg className="w-6 h-6 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
-      skills: [
-        { name: "React / Next.js", level: 90 },
-        { name: "TypeScript", level: 85 },
-        { name: "HTML5 & CSS3 / Tailwind", level: 95 },
-        { name: "JavaScript (ES6+)", level: 90 },
-        { name: "Redux / Zustand", level: 75 }
-      ]
-    },
-    {
-      title: "Backend & Databáze",
-      icon: (
-        <svg className="w-6 h-6 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-        </svg>
-      ),
-      skills: [
-        { name: "Node.js (Express / NestJS)", level: 85 },
-        { name: "PostgreSQL / MySQL", level: 80 },
-        { name: "MongoDB", level: 85 },
-        { name: "REST API & GraphQL", level: 90 },
-        { name: "Redis", level: 70 }
-      ]
-    },
-    {
-      title: "Nástroje & DevOps",
-      icon: (
-        <svg className="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      ),
-      skills: [
-        { name: "Git & GitHub / GitLab", level: 90 },
-        { name: "Docker", level: 75 },
-        { name: "Linux / Bash", level: 80 },
-        { name: "Vercel / Netlify / AWS", level: 85 },
-        { name: "CI/CD Pipelines", level: 70 }
-      ]
-    }
-  ];
+export default function Skills({ categories }: SkillsProps) {
 
   return (
     <section id="skills" className="py-24 relative overflow-hidden">
@@ -83,7 +49,7 @@ export default function Skills() {
 
         {/* Mřížka kategorií */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {skillCategories.map((category) => (
+          {categories.map((category) => (
             <div
               key={category.title}
               className="glass-panel-light dark:glass-panel-dark rounded-2xl p-6 hover-card-trigger"
@@ -91,7 +57,7 @@ export default function Skills() {
               {/* Hlavička kategorie */}
               <div className="flex items-center gap-3.5 mb-8 border-b border-zinc-200/50 dark:border-zinc-800/40 pb-4">
                 <div className="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-900/50">
-                  {category.icon}
+                  {iconMap[category.id] || iconMap["frontend"]}
                 </div>
                 <h3 className="text-lg font-bold text-zinc-950 dark:text-white">
                   {category.title}

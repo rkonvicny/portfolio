@@ -6,7 +6,7 @@ const typewriterWords = [
   "Full-stack Vývojáře.",
   "Specialistu na Next.js & React.",
   "Tvůrce moderních webových aplikací.",
-  "Nadšence do TypeScriptu & Node.js."
+  "Nadšence do TypeScriptu & Node.js.",
 ];
 
 export default function Hero() {
@@ -17,15 +17,15 @@ export default function Hero() {
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    
+
     const handleType = () => {
       const fullWord = typewriterWords[wordIndex];
-      
+
       if (!isDeleting) {
         // Psaní písmen
         setCurrentText(fullWord.substring(0, currentText.length + 1));
         setTypingSpeed(100);
-        
+
         if (currentText === fullWord) {
           // Slovo je celé napsané, počkáme před mazáním
           timer = setTimeout(() => setIsDeleting(true), 2000);
@@ -35,18 +35,18 @@ export default function Hero() {
         // Mazání písmen
         setCurrentText(fullWord.substring(0, currentText.length - 1));
         setTypingSpeed(50);
-        
+
         if (currentText === "") {
           setIsDeleting(false);
           setWordIndex((prev) => (prev + 1) % typewriterWords.length);
         }
       }
-      
+
       timer = setTimeout(handleType, typingSpeed);
     };
 
     timer = setTimeout(handleType, typingSpeed);
-    
+
     return () => clearTimeout(timer);
   }, [currentText, isDeleting, wordIndex, typingSpeed]);
 
@@ -84,7 +84,10 @@ export default function Hero() {
 
         {/* Hlavní titulek */}
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
-          Ahoj, já jsem <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent animate-glow">Konrád</span>
+          Ahoj, já jsem{" "}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent animate-glow">
+            Konrád
+          </span>
         </h1>
 
         {/* Dynamický podtitulek s psacím efektem */}
@@ -97,7 +100,9 @@ export default function Hero() {
 
         {/* Krátké shrnutí */}
         <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-10 leading-relaxed">
-          Navrhuji a vyvíjím robustní full-stack aplikace, které vynikají skvělým uživatelským rozhraním, rychlým načítáním a moderní architekturou.
+          Navrhuji a vyvíjím robustní full-stack aplikace, které vynikají
+          skvělým uživatelským rozhraním, rychlým načítáním a moderní
+          architekturou.
         </p>
 
         {/* CTA Tlačítka */}
@@ -116,7 +121,9 @@ export default function Hero() {
             href="#projects"
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+              document
+                .getElementById("projects")
+                ?.scrollIntoView({ behavior: "smooth" });
             }}
             className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 font-medium hover:bg-zinc-100/60 dark:hover:bg-zinc-800/40 backdrop-blur-xs transition-all text-center duration-300 cursor-pointer"
           >
@@ -136,7 +143,12 @@ export default function Hero() {
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          />
         </svg>
       </div>
     </section>

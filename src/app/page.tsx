@@ -5,8 +5,13 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { di } from "@/infrastructure/di";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await di.getProjectsUseCase.execute();
+  const experience = await di.getExperienceUseCase.execute();
+  const skills = await di.getSkillsUseCase.execute();
+
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-bg-light text-foreground dark:bg-bg-dark transition-colors duration-300">
       {/* Hlavní navigace */}
@@ -18,13 +23,13 @@ export default function Home() {
         <Hero />
         
         {/* Schopnosti (Skills) */}
-        <Skills />
+        <Skills categories={skills} />
         
         {/* Projekty (Projects) */}
-        <Projects />
+        <Projects projects={projects} />
         
         {/* Zkušenosti (Experience Timeline) */}
-        <Experience />
+        <Experience experience={experience} />
         
         {/* Kontakt (Contact Form) */}
         <Contact />
