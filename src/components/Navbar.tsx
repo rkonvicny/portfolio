@@ -16,7 +16,7 @@ const navLinks: NavLink[] = [
   { label: "Kontakt", href: "#contact" },
 ];
 
-export default function Navbar() {
+export const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

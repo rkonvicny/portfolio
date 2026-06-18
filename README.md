@@ -21,15 +21,12 @@ cd portfolio
 
 Tento projekt využívá **pnpm** (verze 11+). Vzhledem k novým bezpečnostním pravidlům pnpm jsou ve výchozím nastavení blokovány build skripty závislostí, což v neinteraktivním CLI režimu způsobuje selhání instalace.
 
-Pro vyřešení tohoto problému jsou povolené buildy (konkrétně pro `sharp` a `unrs-resolver`) nadefinovány v souboru `pnpm-workspace.yaml`:
+Pro vyřešení tohoto problému jsou povolené buildy (konkrétně pro `sharp` a `unrs-resolver`) nadefinovány v `pnpm-workspace.yaml` pomocí `allowBuilds`:
 
 ```yaml
 allowBuilds:
   sharp: true
   unrs-resolver: true
-ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
 ```
 
 Díky této konfiguraci stačí pro instalaci spustit standardní příkaz:
@@ -85,7 +82,7 @@ portfolio/
 │   │   └── Skills.tsx      # Sekce dovedností s progress lištami
 │   └── context/
 │       └── ThemeContext.tsx # Správa motivů (Light/Dark mode) a localStorage
-├── pnpm-workspace.yaml     # Konfigurace pnpm a povolení buildů
+├── pnpm-workspace.yaml     # Konfigurace pnpm včetně allowBuilds
 ├── tsconfig.json           # Konfigurace TypeScriptu
 └── package.json            # Závislosti a skripty projektu
 ```

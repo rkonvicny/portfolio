@@ -1,14 +1,12 @@
 "use client";
 
-import React from "react";
-
 import { ExperienceItem } from "../domain/experience/ExperienceItem";
 
 interface ExperienceProps {
   experience: ExperienceItem[];
 }
 
-export default function Experience({ experience }: ExperienceProps) {
+export const Experience = ({ experience }: ExperienceProps) => {
 
   return (
     <section id="experience" className="py-24 relative overflow-hidden">

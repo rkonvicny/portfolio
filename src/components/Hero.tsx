@@ -9,7 +9,7 @@ const typewriterWords = [
   "Nadšence do TypeScriptu & Node.js.",
 ];
 
-export default function Hero() {
+export const Hero = () => {
   const [wordIndex, setWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
