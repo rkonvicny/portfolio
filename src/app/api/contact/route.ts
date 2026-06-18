@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { di } from "../../../infrastructure/di";
-import { ValidationError } from "../../../domain/errors/ValidationError";
+import { di } from "@infrastructure/di";
+import { ValidationError } from "@/domain/errors/validation-error";
 
 export async function POST(request: Request) {
 	try {

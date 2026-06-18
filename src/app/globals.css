@@ -40,25 +40,12 @@
   }
 }
 
-:root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-}
-
-.dark {
-  --background: #030712;
-  --foreground: #f3f4f6;
-}
-
 /* Base resets & styles */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  transition: background-color 0.3s ease, color 0.3s ease;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
@@ -84,35 +71,6 @@ body {
 }
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #334155;
-}
-
-/* Glassmorphism Classes */
-.glass-panel-light {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.glass-panel-dark {
-  background: rgba(11, 19, 41, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.glass-navbar-light {
-  background: rgba(248, 250, 252, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-}
-
-.glass-navbar-dark {
-  background: rgba(3, 7, 18, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(30, 41, 59, 0.8);
 }
 
 /* Glow effects */

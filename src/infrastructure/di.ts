@@ -1,11 +1,11 @@
-import { MockEmailService } from "./contact/MockEmailService";
-import { SubmitContactFormUseCase } from "../application/contact/SubmitContactFormUseCase";
-import { InMemoryProjectRepository } from "./projects/InMemoryProjectRepository";
-import { GetProjectsUseCase } from "../application/projects/GetProjectsUseCase";
-import { InMemoryExperienceRepository } from "./experience/InMemoryExperienceRepository";
-import { GetExperienceUseCase } from "../application/experience/GetExperienceUseCase";
-import { InMemorySkillRepository } from "./skills/InMemorySkillRepository";
-import { GetSkillsUseCase } from "../application/skills/GetSkillsUseCase";
+import { MockEmailService } from "@infrastructure/services/MockEmailService";
+import { SubmitContactFormUseCase } from "@/application/use-cases/submit-contact-form-use-case";
+import { InMemoryProjectRepository } from "@infrastructure/repositories/InMemoryProjectRepository";
+import { GetProjectsUseCase } from "@/application/use-cases/get-projects-use-case";
+import { InMemoryExperienceRepository } from "@infrastructure/repositories/InMemoryExperienceRepository";
+import { GetExperienceUseCase } from "@/application/use-cases/get-experience-use-case";
+import { InMemorySkillRepository } from "@infrastructure/repositories/InMemorySkillRepository";
+import { GetSkillsUseCase } from "@/application/use-cases/get-skills-use-case";
 
 // Inicializace infrastrukturních závislostí
 const emailService = new MockEmailService();

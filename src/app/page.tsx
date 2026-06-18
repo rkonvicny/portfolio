@@ -17,7 +17,7 @@ export default async function Home() {
 	]);
 
 	return (
-		<div className="min-h-screen flex flex-col relative overflow-hidden bg-bg-light text-foreground dark:bg-bg-dark transition-colors duration-300">
+		<div className="min-h-screen flex flex-col relative overflow-hidden transition-colors duration-300">
 			{/* Hlavní navigace */}
 			<Navbar />
 

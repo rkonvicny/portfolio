@@ -1,4 +1,4 @@
-import { ValidationError } from "../errors/ValidationError";
+import { ValidationError } from "@domain/errors/validation-error";
 
 export class ContactMessage {
 	constructor(

@@ -13,24 +13,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Portfolio | Full-stack Vývojář",
-  description: "Moderní interaktivní portfolio full-stack softwarového vývojáře. Projekty, dovednosti, profesní zkušenosti a kontakt.",
-};
+import portfolioData from "@/data/portfolio.json";
 
-const themeScript = `
-  (function() {
-    try {
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    } catch (_) {}
-  })();
-`;
+export const metadata: Metadata = {
+  title: `${portfolioData.personal.siteTitle} | ${portfolioData.personal.role}`,
+  description: portfolioData.personal.bio,
+};
 
 export default function RootLayout({
   children,
@@ -43,11 +31,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
-      <body className="min-h-full flex flex-col bg-bg-light text-foreground dark:bg-bg-dark transition-colors duration-300">
-        <ThemeProvider>
+      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>
       </body>
