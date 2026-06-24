@@ -8,6 +8,7 @@ description: Generates a high-performance interactive triangular canvas mesh usi
 Tento skill použij, když je potřeba oživit pozadí nějaké sekce interaktivní mřížkou, která reaguje na kurzor myši.
 
 ## Klíčová pravidla pro implementaci:
+
 1. **Technologie:** Použij HTML5 `<canvas>` a animuj ho přes `useAnimationFrame` z `motion/react`.
 2. **Defensive Programming (Kritické!):**
    - Při iterování mřížky ve vykreslovací smyčce a hledání sousedů (`rightNode`, `bottomNode`, `bottomRight`, `bottomLeft`), VŽDY zkontroluj, zda bod existuje, než přečteš jeho vlastnosti `x` a `y`.

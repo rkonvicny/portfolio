@@ -5,15 +5,15 @@ import portfolioData from "@/data/portfolio.json";
 import { FaGithub, FaLinkedin, FaTwitter, FaArrowUp } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
+const iconMap: Record<string, IconType> = {
+	github: FaGithub,
+	linkedin: FaLinkedin,
+	twitter: FaTwitter
+};
+
 export const Footer = () => {
 	const currentYear = new Date().getFullYear();
 	const socials = portfolioData.personal.socials || [];
-
-	const iconMap: Record<string, IconType> = {
-		github: FaGithub,
-		linkedin: FaLinkedin,
-		twitter: FaTwitter
-	};
 
 	const handleScrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
 		e.preventDefault();
@@ -58,7 +58,9 @@ export const Footer = () => {
 								{Icon ? (
 									<Icon className="w-5 h-5" />
 								) : (
-									<span className="text-xs font-bold px-1 uppercase">{social.platform.substring(0, 2)}</span>
+									<span className="text-xs font-bold px-1 uppercase">
+										{social.platform.substring(0, 2)}
+									</span>
 								)}
 							</a>
 						);

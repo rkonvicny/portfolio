@@ -18,23 +18,21 @@ export const Contact = () => {
 		name: "",
 		email: "",
 		subject: "",
-		message: "",
+		message: ""
 	});
 	const [status, setStatus] = useState<FormStatus>("idle");
 	const [errorMessage, setErrorMessage] = useState("");
 
-	const handleChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-	) => {
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		if (!formData.name || !formData.email || !formData.message) {
+		if (!formData.name || !formData.email || !formData.message || !formData.subject) {
 			setErrorMessage(
-				"Prosím vyplňte všechna povinná pole (Jméno, E-mail, Zpráva).",
+				"Prosím vyplňte všechna povinná pole (Jméno, E-mail, Předmět, Zpráva)."
 			);
 			setStatus("error");
 			return;
@@ -47,7 +45,7 @@ export const Contact = () => {
 			const response = await fetch("/api/contact", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(formData),
+				body: JSON.stringify(formData)
 			});
 
 			if (response.ok) {
@@ -56,23 +54,20 @@ export const Contact = () => {
 			} else {
 				const data = await response.json();
 				setErrorMessage(
-					data.error || "Odeslání zprávy se nezdařilo. Zkuste to prosím znovu.",
+					data.error || "Odeslání zprávy se nezdařilo. Zkuste to prosím znovu."
 				);
 				setStatus("error");
 			}
 		} catch {
 			setErrorMessage(
-				"Došlo k chybě při komunikaci se serverem. Zkontrolujte prosím připojení.",
+				"Došlo k chybě při komunikaci se serverem. Zkontrolujte prosím připojení."
 			);
 			setStatus("error");
 		}
 	};
 
 	return (
-		<section
-			id="contact"
-			className="py-24 bg-zinc-50/50 dark:bg-zinc-950/20 relative"
-		>
+		<section id="contact" className="py-24 bg-zinc-50/50 dark:bg-zinc-950/20 relative">
 			<div className="max-w-6xl mx-auto px-6 relative z-10">
 				{/* Nadpis sekce */}
 				<SectionHeader subtitle="Kontakt" title="Napište mi zprávu" />

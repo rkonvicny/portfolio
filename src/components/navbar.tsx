@@ -9,7 +9,7 @@ import { FiMoon, FiSun, FiMenu, FiX } from "react-icons/fi";
 const { pageSettings, personal } = portfolioData;
 
 const githubSocial = personal.socials?.find(
-	(s: { icon: string; url: string }) => s.icon === "github",
+	(s: { icon: string; url: string }) => s.icon === "github"
 );
 
 interface NavLink {
@@ -21,7 +21,7 @@ const navLinks: NavLink[] = [
 	{ label: "Domů", href: "#home" },
 	{ label: "Dovednosti", href: "#skills" },
 	{ label: "Zkušenosti", href: "#experience" },
-	{ label: "Kontakt", href: "#contact" },
+	{ label: "Kontakt", href: "#contact" }
 ];
 
 export const Navbar = () => {
@@ -73,10 +73,7 @@ export const Navbar = () => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	const handleLinkClick = (
-		e: React.MouseEvent<HTMLAnchorElement>,
-		href: string,
-	) => {
+	const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
 		e.preventDefault();
 		setMobileMenuOpen(false);
 
@@ -110,9 +107,7 @@ export const Navbar = () => {
 						className="text-xl font-bold tracking-tight text-brand-primary dark:text-brand-secondary transition-all hover:scale-105"
 					>
 						{siteTitle[0]}
-						<span className="text-slate-900 dark:text-white">
-							.{siteTitle[1]}
-						</span>
+						<span className="text-slate-900 dark:text-white">.{siteTitle[1]}</span>
 					</a>
 
 					{/* Desktop Nav Links */}

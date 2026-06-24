@@ -4,8 +4,7 @@
 
 @theme {
 	--font-sans: var(--font-ubuntu-sans), ui-sans-serif, system-ui, sans-serif;
-	--font-mono:
-		var(--font-ubuntu-sans-mono), ui-monospace, SFMono-Regular, monospace;
+	--font-mono: var(--font-ubuntu-sans-mono), ui-monospace, SFMono-Regular, monospace;
 	--color-bg-light: #f8fafc;
 	--color-bg-dark: #030712;
 	--color-card-light: #ffffff;

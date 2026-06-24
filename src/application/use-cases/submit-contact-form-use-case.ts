@@ -15,9 +15,7 @@ export class SubmitContactFormUseCase {
 	public async execute(dto: SubmitContactFormDTO): Promise<void> {
 		// 1. Validace vstupních dat
 		if (!dto.name || !dto.email || !dto.message) {
-			throw new ValidationError(
-				"Chybí povinná pole (jméno, e-mail nebo zpráva).",
-			);
+			throw new ValidationError("Chybí povinná pole (jméno, e-mail nebo zpráva).");
 		}
 
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,7 +28,7 @@ export class SubmitContactFormUseCase {
 			name: dto.name,
 			email: dto.email,
 			subject: dto.subject,
-			message: dto.message,
+			message: dto.message
 		};
 
 		// 3. Provedení business operace (odeslání e-mailu přes abstraktní port)

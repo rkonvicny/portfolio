@@ -135,7 +135,7 @@ const iconMap: Record<string, React.ReactNode> = {
 				d="M13 10V3L4 14h7v7l9-11h-7z"
 			/>
 		</svg>
-	),
+	)
 };
 
 export const Skills = ({ categories }: SkillsProps) => {
@@ -169,8 +169,8 @@ export const Skills = ({ categories }: SkillsProps) => {
 							{/* Seznam dovedností (Tag Cloud) */}
 							<div className="flex flex-wrap gap-2.5">
 								{category.skills.map((skill) => (
-									<span 
-										key={skill.name} 
+									<span
+										key={skill.name}
 										className="inline-flex items-center px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 bg-zinc-100/80 text-zinc-800 dark:bg-zinc-800/60 dark:text-zinc-200 border border-zinc-200/80 dark:border-zinc-700/50 hover:border-brand-primary/50 dark:hover:border-brand-secondary/50 hover:bg-white dark:hover:bg-zinc-800 shadow-[0_2px_8px_-4px_rgba(0,0,0,0.1)] dark:shadow-none hover:-translate-y-0.5"
 									>
 										{skill.name}

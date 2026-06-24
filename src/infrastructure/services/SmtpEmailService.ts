@@ -13,8 +13,8 @@ export class SmtpEmailService implements IEmailService {
 			secure: true, // true for 465, false for other ports
 			auth: {
 				user: process.env.SMTP_USER,
-				pass: process.env.SMTP_PASS,
-			},
+				pass: process.env.SMTP_PASS
+			}
 		});
 	}
 
@@ -40,9 +40,11 @@ export class SmtpEmailService implements IEmailService {
 						<hr />
 						<p style="white-space: pre-wrap;">${contactMessage.message}</p>
 					</div>
-				`,
+				`
 			});
-			console.log(`[SmtpEmailService] Zpráva od ${contactMessage.email} byla úspěšně odeslána.`);
+			console.log(
+				`[SmtpEmailService] Zpráva od ${contactMessage.email} byla úspěšně odeslána.`
+			);
 		} catch (error) {
 			console.error("[SmtpEmailService] Chyba při odesílání e-mailu:", error);
 			throw new Error("Nepodařilo se odeslat e-mail. Zkuste to prosím později.");

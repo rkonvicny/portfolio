@@ -1,9 +1,10 @@
 {
 	"pageSettings": {
+		"enableStatusRow": false,
 		"enableNameGlow": false,
 		"enableNameGradient": false,
 		"enableTypewriterSection": false,
-		"enableButtonBar": false,
+		"enableButtonRow": false,
 		"enableExtendedSectionHeader": false,
 		"enableThemeSwitcher": false
 	},

@@ -8,6 +8,7 @@ description: Scaffolds a new application use case with strict dependency and val
 Tento skill použij k vytvoření nové byznys logiky ve vrstvě Application.
 
 ## Postup:
+
 1. **Vytvoření souboru:** Založ nový soubor v `src/application/use-cases/`. Název musí být v `kebab-case` a končit na `-use-case.ts` (např. `get-blog-posts-use-case.ts`).
 2. **Definice třídy:** Třída musí být pojmenována v PascalCase a implementovat metodu `execute()`.
 3. **Závislosti:** Konstruktor smí přijímat pouze rozhraní (Porty) z `src/domain/repositories/` nebo `src/domain/ports/`. Nikdy nepřijímej konkrétní implementace z `infrastructure`!

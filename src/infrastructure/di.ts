@@ -15,8 +15,8 @@ const skillRepository = new InMemorySkillRepository();
 
 // Inicializace Use Cases s vloženými závislostmi (Dependency Injection)
 export const di = {
-  submitContactFormUseCase: new SubmitContactFormUseCase(emailService),
-  getProjectsUseCase: new GetProjectsUseCase(projectRepository),
-  getExperienceUseCase: new GetExperienceUseCase(experienceRepository),
-  getSkillsUseCase: new GetSkillsUseCase(skillRepository),
+	submitContactFormUseCase: new SubmitContactFormUseCase(emailService),
+	getProjectsUseCase: new GetProjectsUseCase(projectRepository),
+	getExperienceUseCase: new GetExperienceUseCase(experienceRepository),
+	getSkillsUseCase: new GetSkillsUseCase(skillRepository)
 };
