@@ -5,7 +5,7 @@
 		"enableTypewriterSection": false,
 		"enableButtonBar": false,
 		"enableExtendedSectionHeader": false,
-    "enableThemeSwitcher": false
+		"enableThemeSwitcher": false
 	},
 	"personal": {
 		"name": "Radim Konvičný",
@@ -13,14 +13,19 @@
 		"email": "konr@konr.cz",
 		"phone": "+420 776 161 831",
 		"location": "Nový Jičín, Česká republika",
-		"github": "https://github.com/konr",
-		"linkedin": "https://linkedin.com/in/konr",
-		"bio": "Zkušený softwarový inženýr se zaměřením na Full Stack vývoj, softwarovou architekturu a návrh REST API. Mám hluboké zkušenosti s platformou .NET (C#), moderním JavaScriptem a agilním řízením (Scrum, Kanban). Specializuji se také na PLM systémy a automatizaci.",
+		"socials": [
+			{
+				"platform": "GitHub",
+				"url": "https://github.com/rkonvicny",
+				"icon": "github"
+			}
+		],
+		"bio": "Softwarový inženýr a architekt s více než 17 lety praxe ve vývoji komplexních podnikových systémů. Zajišťuji projekty od úvodní analýzy a přímé komunikace se zákazníkem až po finální nasazení a správu serverů. Buduji robustní backendy, moderní interaktivní frontendy i hluboké integrace PDM/PLM platforem. Zakládám si na komplexním přístupu k řešení problémů, ať už jde o kód, databáze, nebo infrastrukturu.",
 		"typewriterWords": [
-			"Full Stack Developera.",
-			"Software Architekta.",
-			"Experta na .NET a Web.",
-			"Fanouška agilních metodik."
+			"Full-Stack Vývojáře.",
+			"Softwarového Architekta.",
+			"Experta na PLM integrace.",
+			"Solution Engineera."
 		],
 		"siteTitle": "Radim Konvičný - Portfolio",
 		"languages": [

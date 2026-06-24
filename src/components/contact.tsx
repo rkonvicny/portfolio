@@ -85,8 +85,7 @@ export const Contact = () => {
 							Neváhejte se ozvat
 						</h3>
 						<p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-							Máte zájem o spolupráci, chcete probrat svůj projekt nebo se jen
-							na něco zeptat? Můžete využít kontaktní formulář, nebo mě
+							Pokud máte zájem o spolupráci, můžete využít kontaktní formulář, nebo mě
 							kontaktovat přímo přes e-mail či telefon.
 						</p>
 
@@ -241,8 +240,8 @@ export const Contact = () => {
 												onChange={handleChange}
 												required
 												disabled={status === "sending"}
-												placeholder="Např. Jan Novák"
-												className="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary dark:focus:ring-brand-secondary transition-all"
+												// placeholder="Např. Jan Novák"
+												className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-white/50 dark:bg-zinc-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary dark:focus:ring-brand-secondary transition-all"
 											/>
 										</div>
 										<div className="flex flex-col gap-2">
@@ -260,8 +259,8 @@ export const Contact = () => {
 												onChange={handleChange}
 												required
 												disabled={status === "sending"}
-												placeholder="např. jan.novak@email.cz"
-												className="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary dark:focus:ring-brand-secondary transition-all"
+												// placeholder="např. jan.novak@email.cz"
+												className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-white/50 dark:bg-zinc-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary dark:focus:ring-brand-secondary transition-all"
 											/>
 										</div>
 									</div>
@@ -272,7 +271,7 @@ export const Contact = () => {
 											htmlFor="subject"
 											className="text-xs font-bold uppercase text-zinc-500"
 										>
-											Předmět zprávy
+											Předmět zprávy <span className="text-red-500">*</span>
 										</label>
 										<input
 											type="text"
@@ -280,9 +279,10 @@ export const Contact = () => {
 											name="subject"
 											value={formData.subject}
 											onChange={handleChange}
+											required
 											disabled={status === "sending"}
-											placeholder="Např. Poptávka vývoje webu"
-											className="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary dark:focus:ring-brand-secondary transition-all"
+											// placeholder="Např. Poptávka vývoje webu"
+											className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-white/50 dark:bg-zinc-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary dark:focus:ring-brand-secondary transition-all"
 										/>
 									</div>
 
@@ -302,8 +302,8 @@ export const Contact = () => {
 											onChange={handleChange}
 											required
 											disabled={status === "sending"}
-											placeholder="Sem napište svou zprávu..."
-											className="w-full px-4 py-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary dark:focus:ring-brand-secondary transition-all resize-y min-h-30"
+											// placeholder="Sem napište svou zprávu..."
+											className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-white/50 dark:bg-zinc-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary dark:focus:ring-brand-secondary transition-all resize-y min-h-30"
 										/>
 									</div>
 

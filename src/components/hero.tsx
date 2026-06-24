@@ -73,7 +73,7 @@ export const Hero = () => {
 
 			<div className="relative z-10 max-w-4xl mx-auto px-6 text-center select-none animate-fade-in-up">
 				{/* Pozdrav */}
-				<div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-100/30 dark:bg-zinc-900/30 backdrop-blur-md mb-6">
+				{/* <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-100/30 dark:bg-zinc-900/30 backdrop-blur-md mb-6">
 					<span className="flex h-2 w-2 relative">
 						<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-secondary opacity-75"></span>
 						<span className="relative inline-flex rounded-full h-2 w-2 bg-brand-secondary"></span>
@@ -81,11 +81,11 @@ export const Hero = () => {
 					<span className="text-xs font-semibold tracking-wide uppercase text-zinc-600 dark:text-zinc-300">
 						Dostupný pro nové projekty
 					</span>
-				</div>
+				</div> */}
 
 				{/* Hlavní titulek */}
-				<h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
-					Ahoj, já jsem{" "}
+				<h1 className="text-4xl sm:text-5xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
+					Ahoj, jsem{" "}
 					<span
 						className={
 							pageSettings.enableNameGradient
