@@ -201,11 +201,7 @@ export const HeroBackground = ({
 		}
 
 		// Dynamická barva na základě tématu
-		const isDark =
-			resolvedTheme === "dark" ||
-			(!resolvedTheme &&
-				typeof window !== "undefined" &&
-				window.matchMedia("(prefers-color-scheme: dark)").matches);
+		const isDark = isDarkRef.current;
 
 		ctx.strokeStyle = isDark ? "rgba(255, 255, 255, 0.07)" : "rgba(0, 0, 0, 0.06)";
 		ctx.fillStyle = isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.25)";
