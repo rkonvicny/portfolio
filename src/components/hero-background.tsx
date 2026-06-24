@@ -62,6 +62,15 @@ export const HeroBackground = ({
 	});
 	const { resolvedTheme } = useTheme();
 
+	const isDarkRef = useRef(false);
+	useEffect(() => {
+		isDarkRef.current =
+			resolvedTheme === "dark" ||
+			(!resolvedTheme &&
+				typeof window !== "undefined" &&
+				window.matchMedia("(prefers-color-scheme: dark)").matches);
+	}, [resolvedTheme]);
+
 	// Props musíme uložit do ref, abychom měli k jejich čerstvé hodnotě přístup v useAnimationFrame bez re-renderů
 	const configRef = useRef({
 		pullRadius,
@@ -188,11 +197,6 @@ export const HeroBackground = ({
 				// Síla roste blíž ke středu kurzoru
 				const force = Math.pow((config.pullRadius - dist) / config.pullRadius, 1.5);
 				node.x = node.baseX + dx * force * config.pullStrength;
-				node.y = node.baseY + dy * force * config.pullStrength;
-			} else {
-				// Návrat do původní pozice
-				node.x += (node.baseX - node.x) * config.dampening;
-				node.y += (node.baseY - node.y) * config.dampening;
 			}
 		}
 

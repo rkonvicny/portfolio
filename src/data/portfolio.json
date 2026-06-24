@@ -6,7 +6,7 @@
 		"enableTypewriterSection": false,
 		"enableButtonRow": false,
 		"enableExtendedSectionHeader": false,
-		"enableThemeSwitcher": false
+		"enableThemeSwitcher": true
 	},
 	"personal": {
 		"name": "Radim Konvičný",
@@ -28,7 +28,7 @@
 			"Experta na PLM integrace.",
 			"Solution Engineera."
 		],
-		"siteTitle": "Radim Konvičný - Portfolio",
+		"siteTitle": "konr.cz",
 		"languages": [
 			"Čeština (Rodilý mluvčí)",
 			"Angličtina (Čtení technické dokumentace, základní komunikace)"
