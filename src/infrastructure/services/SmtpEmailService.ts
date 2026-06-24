@@ -6,6 +6,12 @@ export class SmtpEmailService implements IEmailService {
 	private transporter: nodemailer.Transporter;
 
 	constructor() {
+		if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+			throw new Error(
+				"[SmtpEmailService] Chybí SMTP údaje v .env (SMTP_USER, SMTP_PASS)."
+			);
+		}
+
 		// Konfigurace transportu pro Seznam SMTP
 		this.transporter = nodemailer.createTransport({
 			host: "smtp.seznam.cz",
@@ -19,19 +25,6 @@ export class SmtpEmailService implements IEmailService {
 	}
 
 	public async sendEmail(contactMessage: ContactMessage): Promise<void> {
-		if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-			const errorMessage =
-				"[SmtpEmailService] Chybí SMTP údaje v .env. Odesílám mock.";
-
-			if (process.env.NODE_ENV === "production") {
-				throw new Error(errorMessage);
-			}
-
-			console.warn(errorMessage);
-			console.log("Mock zpráva:", contactMessage);
-			return;
-		}
-
 		try {
 			await this.transporter.sendMail({
 				from: `"Portfolio Kontakt" <${process.env.SMTP_USER}>`, // E-mail odesílatele (musí patřit k účtu na Seznamu)

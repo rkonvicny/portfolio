@@ -14,7 +14,7 @@ export class ContactMessage {
 		subject: string,
 		message: string
 	): ContactMessage {
-		if (!name || !email || !message || !subject) {
+		if (!name?.trim() || !email?.trim() || !message?.trim() || !subject?.trim()) {
 			throw new ValidationError("Chybí povinná pole (jméno, e-mail, předmět nebo zpráva).");
 		}
 

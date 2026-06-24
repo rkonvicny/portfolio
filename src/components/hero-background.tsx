@@ -53,6 +53,7 @@ export const HeroBackground = ({
 	// Canvas a logika pro síť
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const nodesRef = useRef<Node[]>([]);
+	const numColsRef = useRef(0);
 	const dimensions = useRef({ width: 0, height: 0 });
 	const mousePixelRef = useRef({
 		x: -1000,
@@ -129,6 +130,7 @@ export const HeroBackground = ({
 			const cols = Math.ceil(rect.width / spacing) + 2;
 			const rows = Math.ceil(rect.height / (spacing * 0.866)) + 2;
 			const numCols = cols + 1;
+			numColsRef.current = numCols + 1; // Počet prvků na řádek pro c <= numCols
 
 			for (let r = 0; r <= rows; r++) {
 				for (let c = 0; c <= numCols; c++) {
@@ -180,6 +182,8 @@ export const HeroBackground = ({
 
 		const config = configRef.current;
 		const mouse = mousePixelRef.current;
+		const numCols = numColsRef.current;
+		if (numCols <= 0) return;
 		// Smooth fyzika pohybu myši
 		mouse.x += (mouse.targetX - mouse.x) * config.mouseDampening;
 		mouse.y += (mouse.targetY - mouse.y) * config.mouseDampening;
@@ -211,9 +215,6 @@ export const HeroBackground = ({
 		ctx.strokeStyle = isDark ? "rgba(255, 255, 255, 0.07)" : "rgba(0, 0, 0, 0.06)";
 		ctx.fillStyle = isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.25)";
 		ctx.lineWidth = config.lineWidth;
-
-		const cols = Math.ceil(width / config.spacing) + 2;
-		const numCols = cols + 2; // Odpovídá c <= numCols z resize() -> numCols + 1 prvků
 
 		ctx.beginPath();
 

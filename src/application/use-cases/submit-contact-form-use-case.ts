@@ -14,7 +14,12 @@ export class SubmitContactFormUseCase {
 
 	public async execute(dto: SubmitContactFormDTO): Promise<void> {
 		// 1. Validace vstupních dat
-		if (!dto.name || !dto.email || !dto.subject || !dto.message) {
+		if (
+			!dto.name?.trim() ||
+			!dto.email?.trim() ||
+			!dto.subject?.trim() ||
+			!dto.message?.trim()
+		) {
 			throw new ValidationError("Chybí povinná pole (jméno, e-mail, předmět nebo zpráva).");
 		}
 
