@@ -14,8 +14,8 @@ export class ContactMessage {
 		subject: string,
 		message: string
 	): ContactMessage {
-		if (!name || !email || !message) {
-			throw new ValidationError("Chybí povinná pole (jméno, e-mail nebo zpráva).");
+		if (!name || !email || !message || !subject) {
+			throw new ValidationError("Chybí povinná pole (jméno, e-mail, předmět nebo zpráva).");
 		}
 
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

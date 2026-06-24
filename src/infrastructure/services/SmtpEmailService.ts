@@ -20,7 +20,14 @@ export class SmtpEmailService implements IEmailService {
 
 	public async sendEmail(contactMessage: ContactMessage): Promise<void> {
 		if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-			console.warn("[SmtpEmailService] Chybí SMTP údaje v .env. Odesílám mock.");
+			const errorMessage =
+				"[SmtpEmailService] Chybí SMTP údaje v .env. Odesílám mock.";
+
+			if (process.env.NODE_ENV === "production") {
+				throw new Error(errorMessage);
+			}
+
+			console.warn(errorMessage);
 			console.log("Mock zpráva:", contactMessage);
 			return;
 		}
