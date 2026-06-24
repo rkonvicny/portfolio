@@ -197,6 +197,11 @@ export const HeroBackground = ({
 				// Síla roste blíž ke středu kurzoru
 				const force = Math.pow((config.pullRadius - dist) / config.pullRadius, 1.5);
 				node.x = node.baseX + dx * force * config.pullStrength;
+				node.y = node.baseY + dy * force * config.pullStrength;
+			} else {
+				// Návrat do původní pozice
+				node.x += (node.baseX - node.x) * config.dampening;
+				node.y += (node.baseY - node.y) * config.dampening;
 			}
 		}
 

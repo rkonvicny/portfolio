@@ -107,7 +107,7 @@ export const Navbar = () => {
 						className="text-xl font-bold tracking-tight text-brand-primary dark:text-brand-secondary transition-all hover:scale-105"
 					>
 						{siteTitle[0]}
-						<span className="text-slate-900 dark:text-white">.{siteTitle[1]}</span>
+						{siteTitle[1] && <span className="text-slate-900 dark:text-white">.{siteTitle[1]}</span>}
 					</a>
 
 					{/* Desktop Nav Links */}
