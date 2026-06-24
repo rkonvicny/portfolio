@@ -10,11 +10,11 @@ Aplikace je striktně rozdělena podle principů **Clean Architecture** (Package
 
 1. **Domain (`src/domain/`)**
    - Obsahuje čisté datové modely (`entities`) a kontrakty rozhraní (`ports`).
-   - *Pravidlo:* Nesmí mít žádné závislosti na jiných vrstvách ani na externích knihovnách.
+   - _Pravidlo:_ Nesmí mít žádné závislosti na jiných vrstvách ani na externích knihovnách.
 2. **Application (`src/application/`)**
    - Obsahuje aplikační logiku (`use-cases`).
    - Koordinuje tok dat mezi doménou a infrastrukturou.
-   - *Pravidlo:* Závisí pouze na vrstvě Domain. Volá databáze/e-maily přes rozhraní (Ports).
+   - _Pravidlo:_ Závisí pouze na vrstvě Domain. Volá databáze/e-maily přes rozhraní (Ports).
 3. **Infrastructure (`src/infrastructure/`)**
    - Specifické implementace rozhraní (např. odesílání přes SMTP server, čtení z `portfolio.json`).
    - Obsahuje Dependency Injection kontejner (`di.ts`), který propojuje Use Casy s konkrétními repozitáři.
@@ -43,7 +43,7 @@ SMTP_USER="vas@email.cz"
 SMTP_PASS="vase_heslo"
 ```
 
-*(Bez těchto proměnných bude formulář vypisovat zprávy pouze do lokální konzole jako Mock)*.
+_(Bez těchto proměnných bude formulář vypisovat zprávy pouze do lokální konzole jako Mock)_.
 
 ### Spuštění vývojového serveru
 
@@ -58,7 +58,6 @@ Web běží na `http://localhost:3000`.
 ## 🎨 Vlastnosti a rendering
 
 - **Striktní data-driven UI a `pageSettings`:** Veškerý obsah je definován v jediném centrálním souboru `src/data/portfolio.json`. Tento soubor obsahuje nejen data (zkušenosti, skilly), ale také dedikovaný blok `"pageSettings"`, kterým lze zapínat a vypínat vizuální bloky a chování bez zásahu do kódu:
-
   - `enableNameGlow` a `enableNameGradient`: Přepínače pro efekty na jménu v Hero sekci.
   - `enableTypewriterSection`: Zapíná/vypíná dynamický text.
   - `enableButtonBar`: Viditelnost CTA tlačítek v Hero.

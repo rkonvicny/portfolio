@@ -3,8 +3,14 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import portfolioData from "@/data/portfolio.json";
+import { FaGithub } from "react-icons/fa";
+import { FiMoon, FiSun, FiMenu, FiX } from "react-icons/fi";
 
-const { pageSettings } = portfolioData;
+const { pageSettings, personal } = portfolioData;
+
+const githubSocial = personal.socials?.find(
+	(s: { icon: string; url: string }) => s.icon === "github"
+);
 
 interface NavLink {
 	label: string;
@@ -15,7 +21,7 @@ const navLinks: NavLink[] = [
 	{ label: "Domů", href: "#home" },
 	{ label: "Dovednosti", href: "#skills" },
 	{ label: "Zkušenosti", href: "#experience" },
-	{ label: "Kontakt", href: "#contact" },
+	{ label: "Kontakt", href: "#contact" }
 ];
 
 export const Navbar = () => {
@@ -67,10 +73,7 @@ export const Navbar = () => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	const handleLinkClick = (
-		e: React.MouseEvent<HTMLAnchorElement>,
-		href: string,
-	) => {
+	const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
 		e.preventDefault();
 		setMobileMenuOpen(false);
 
@@ -104,9 +107,7 @@ export const Navbar = () => {
 						className="text-xl font-bold tracking-tight text-brand-primary dark:text-brand-secondary transition-all hover:scale-105"
 					>
 						{siteTitle[0]}
-						<span className="text-slate-900 dark:text-white">
-							.{siteTitle[1]}
-						</span>
+						{siteTitle[1] && <span className="text-slate-900 dark:text-white">.{siteTitle[1]}</span>}
 					</a>
 
 					{/* Desktop Nav Links */}
@@ -135,6 +136,19 @@ export const Navbar = () => {
 								);
 							})}
 						</ul>
+						{/* GitHub Link (Desktop) */}
+						{githubSocial && (
+							<a
+								href={githubSocial.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="p-2.5 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-brand-primary dark:hover:text-brand-secondary transition-colors"
+								aria-label="GitHub"
+							>
+								<FaGithub className="w-5 h-5" />
+							</a>
+						)}
+
 						{pageSettings.enableThemeSwitcher && (
 							<>
 								{/* Theme Switcher Button */}
@@ -148,34 +162,10 @@ export const Navbar = () => {
 									>
 										{resolvedTheme === "light" ? (
 											// Moon Icon for switching to dark
-											<svg
-												className="w-5 h-5"
-												fill="none"
-												viewBox="0 0 24 24"
-												stroke="currentColor"
-												strokeWidth={2}
-											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-												/>
-											</svg>
+											<FiMoon className="w-5 h-5" />
 										) : (
 											// Sun Icon for switching to light
-											<svg
-												className="w-5 h-5 text-amber-400"
-												fill="none"
-												viewBox="0 0 24 24"
-												stroke="currentColor"
-												strokeWidth={2}
-											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m2.828 0l-.707-.707m12.02-12.02l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"
-												/>
-											</svg>
+											<FiSun className="w-5 h-5 text-amber-400" />
 										)}
 									</button>
 								) : (
@@ -187,49 +177,40 @@ export const Navbar = () => {
 
 					{/* Mobile Menu Actions */}
 					<div className="flex items-center gap-4 md:hidden">
-						{/* Theme Switcher */}
-						{mounted ? (
-							<button
-								onClick={() =>
-									setTheme(resolvedTheme === "dark" ? "light" : "dark")
-								}
-								className="p-2 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400"
-								aria-label="Přepnout barevný motiv"
+						{/* GitHub Link (Mobile) */}
+						{githubSocial && (
+							<a
+								href={githubSocial.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="p-2 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-brand-primary dark:hover:text-brand-secondary"
+								aria-label="GitHub"
 							>
-								{resolvedTheme === "light" ? (
-									<svg
-										className="w-4.5 h-4.5"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										strokeWidth={2}
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-										/>
-									</svg>
-								) : (
-									<svg
-										className="w-4.5 h-4.5 text-amber-400"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										strokeWidth={2}
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m2.828 0l-.707-.707m12.02-12.02l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"
-										/>
-									</svg>
-								)}
-							</button>
-						) : (
-							<div className="w-9.5 h-9.5"></div>
+								<FaGithub className="w-4.5 h-4.5" />
+							</a>
 						)}
-
+						{pageSettings.enableThemeSwitcher && (
+							<>
+								{/* Theme Switcher */}
+								{mounted ? (
+									<button
+										onClick={() =>
+											setTheme(resolvedTheme === "dark" ? "light" : "dark")
+										}
+										className="p-2 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400"
+										aria-label="Přepnout barevný motiv"
+									>
+										{resolvedTheme === "light" ? (
+											<FiMoon className="w-4.5 h-4.5" />
+										) : (
+											<FiSun className="w-4.5 h-4.5 text-amber-400" />
+										)}
+									</button>
+								) : (
+									<div className="w-9.5 h-9.5"></div>
+								)}
+							</>
+						)}
 						{/* Burger Menu Button */}
 						<button
 							onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -237,33 +218,9 @@ export const Navbar = () => {
 							aria-label="Otevřít menu"
 						>
 							{mobileMenuOpen ? (
-								<svg
-									className="w-6 h-6"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-									strokeWidth={2}
-								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										d="M6 18L18 6M6 6l12 12"
-									/>
-								</svg>
+								<FiX className="w-6 h-6" />
 							) : (
-								<svg
-									className="w-6 h-6"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke="currentColor"
-									strokeWidth={2}
-								>
-									<path
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										d="M4 6h16M4 12h16M4 18h16"
-									/>
-								</svg>
+								<FiMenu className="w-6 h-6" />
 							)}
 						</button>
 					</div>
@@ -300,7 +257,7 @@ export const Navbar = () => {
 					</ul>
 				</div>
 				<div className="text-xs text-center text-zinc-500 dark:text-zinc-600 border-t border-zinc-200 dark:border-zinc-800 pt-4">
-					Konr.dev © 2026
+					konr.cz © 2026
 				</div>
 			</div>
 			{/* Drawer Overlay */}

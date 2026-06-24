@@ -8,6 +8,7 @@ description: Runs strict validation checks before committing or deploying code.
 Tento skill slouží jako kontrolní seznam a akce před tím, než se projekt pushne na git nebo nasadí na Vercel.
 
 ## Kroky ke spuštění:
+
 1. **Ověření buildu a lintingu:**
    - Spusť na pozadí příkaz `pnpm tsc --noEmit && pnpm lint`.
    - Úkol nesmí projít, dokud nevyladíš všechny varování a chyby z ESLintu. Nesmí tam zůstat zbytečné `eslint-disable`.

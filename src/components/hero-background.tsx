@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform, useAnimationFrame } from "motion/react";
 import { useTheme } from "next-themes";
 
@@ -35,7 +35,7 @@ export const HeroBackground = ({
 	nodeRadius = 1.5,
 	lineWidth = 1,
 	dampening = 0.01,
-	mouseDampening = 0.01,
+	mouseDampening = 0.01
 }: HeroBackgroundProps) => {
 	const mouseX = useMotionValue(0);
 	const mouseY = useMotionValue(0);
@@ -53,14 +53,45 @@ export const HeroBackground = ({
 	// Canvas a logika pro síť
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const nodesRef = useRef<Node[]>([]);
+	const numColsRef = useRef(0);
 	const dimensions = useRef({ width: 0, height: 0 });
-	const mousePixelRef = useRef({ x: -1000, y: -1000, targetX: -1000, targetY: -1000 });
+	const mousePixelRef = useRef({
+		x: -1000,
+		y: -1000,
+		targetX: -1000,
+		targetY: -1000
+	});
 	const { resolvedTheme } = useTheme();
 
-	// Props musíme uložit do ref, abychom měli k jejich čerstvé hodnotě přístup v useAnimationFrame bez re-renderů
-	const configRef = useRef({ pullRadius, pullStrength, nodeRadius, lineWidth, dampening, mouseDampening, spacing });
+	const isDarkRef = useRef(false);
 	useEffect(() => {
-		configRef.current = { pullRadius, pullStrength, nodeRadius, lineWidth, dampening, mouseDampening, spacing };
+		isDarkRef.current =
+			resolvedTheme === "dark" ||
+			(!resolvedTheme &&
+				typeof window !== "undefined" &&
+				window.matchMedia("(prefers-color-scheme: dark)").matches);
+	}, [resolvedTheme]);
+
+	// Props musíme uložit do ref, abychom měli k jejich čerstvé hodnotě přístup v useAnimationFrame bez re-renderů
+	const configRef = useRef({
+		pullRadius,
+		pullStrength,
+		nodeRadius,
+		lineWidth,
+		dampening,
+		mouseDampening,
+		spacing
+	});
+	useEffect(() => {
+		configRef.current = {
+			pullRadius,
+			pullStrength,
+			nodeRadius,
+			lineWidth,
+			dampening,
+			mouseDampening,
+			spacing
+		};
 	}, [pullRadius, pullStrength, nodeRadius, lineWidth, dampening, mouseDampening, spacing]);
 
 	useEffect(() => {
@@ -84,12 +115,14 @@ export const HeroBackground = ({
 		const resize = () => {
 			const dpr = window.devicePixelRatio || 1;
 			const parent = canvas.parentElement;
-			const rect = parent ? parent.getBoundingClientRect() : { width: window.innerWidth, height: window.innerHeight };
-			
+			const rect = parent
+				? parent.getBoundingClientRect()
+				: { width: window.innerWidth, height: window.innerHeight };
+
 			canvas.width = rect.width * dpr;
 			canvas.height = rect.height * dpr;
 			dimensions.current = { width: rect.width, height: rect.height };
-			
+
 			const ctx = canvas.getContext("2d");
 			if (ctx) ctx.scale(dpr, dpr);
 
@@ -97,6 +130,7 @@ export const HeroBackground = ({
 			const cols = Math.ceil(rect.width / spacing) + 2;
 			const rows = Math.ceil(rect.height / (spacing * 0.866)) + 2;
 			const numCols = cols + 1;
+			numColsRef.current = numCols + 1; // Počet prvků na řádek pro c <= numCols
 
 			for (let r = 0; r <= rows; r++) {
 				for (let c = 0; c <= numCols; c++) {
@@ -105,7 +139,7 @@ export const HeroBackground = ({
 						baseX: (c - 1) * spacing + offsetX,
 						baseY: (r - 1) * spacing * 0.866,
 						x: (c - 1) * spacing + offsetX,
-						y: (r - 1) * spacing * 0.866,
+						y: (r - 1) * spacing * 0.866
 					});
 				}
 			}
@@ -120,7 +154,7 @@ export const HeroBackground = ({
 			mousePixelRef.current.targetX = e.clientX - rect.left;
 			mousePixelRef.current.targetY = e.clientY - rect.top;
 		};
-		
+
 		const onMouseLeaveCanvas = () => {
 			mousePixelRef.current.targetX = -1000;
 			mousePixelRef.current.targetY = -1000;
@@ -148,6 +182,8 @@ export const HeroBackground = ({
 
 		const config = configRef.current;
 		const mouse = mousePixelRef.current;
+		const numCols = numColsRef.current;
+		if (numCols <= 0) return;
 		// Smooth fyzika pohybu myši
 		mouse.x += (mouse.targetX - mouse.x) * config.mouseDampening;
 		mouse.y += (mouse.targetY - mouse.y) * config.mouseDampening;
@@ -174,17 +210,14 @@ export const HeroBackground = ({
 		}
 
 		// Dynamická barva na základě tématu
-		const isDark = resolvedTheme === "dark" || (!resolvedTheme && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-		
+		const isDark = isDarkRef.current;
+
 		ctx.strokeStyle = isDark ? "rgba(255, 255, 255, 0.07)" : "rgba(0, 0, 0, 0.06)";
 		ctx.fillStyle = isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.25)";
 		ctx.lineWidth = config.lineWidth;
 
-		const cols = Math.ceil(width / config.spacing) + 2;
-		const numCols = cols + 2; // Odpovídá c <= numCols z resize() -> numCols + 1 prvků
-		
 		ctx.beginPath();
-		
+
 		// Kreslení sítě a spojů
 		for (let i = 0; i < nodes.length; i++) {
 			const node = nodes[i];
@@ -207,7 +240,7 @@ export const HeroBackground = ({
 					ctx.moveTo(node.x, node.y);
 					ctx.lineTo(bottomNode.x, bottomNode.y);
 				}
-				
+
 				const isEvenRow = r % 2 === 0;
 				if (isEvenRow && c > 0) {
 					const bottomLeft = nodes[i + numCols - 1];
@@ -228,7 +261,7 @@ export const HeroBackground = ({
 			ctx.moveTo(node.x + config.nodeRadius, node.y);
 			ctx.arc(node.x, node.y, config.nodeRadius, 0, Math.PI * 2);
 		}
-		
+
 		ctx.stroke();
 		ctx.fill();
 	});
@@ -240,18 +273,15 @@ export const HeroBackground = ({
 				className="absolute inset-0 opacity-80"
 				animate={{
 					y: [0, -10, 0],
-					x: [0, 5, 0],
+					x: [0, 5, 0]
 				}}
 				transition={{
 					duration: 15,
 					repeat: Infinity,
-					ease: "easeInOut",
+					ease: "easeInOut"
 				}}
 			>
-				<canvas 
-					ref={canvasRef} 
-					className="absolute inset-0 w-full h-full"
-				/>
+				<canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 			</motion.div>
 
 			{/* Vzdálenější geometrické tvary (Layer 2) */}
@@ -272,13 +302,7 @@ export const HeroBackground = ({
 					stroke="currentColor"
 					strokeWidth="1.5"
 				>
-					<rect
-						x="25"
-						y="25"
-						width="50"
-						height="50"
-						transform="rotate(45 50 50)"
-					/>
+					<rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" />
 				</svg>
 			</motion.div>
 
@@ -301,13 +325,7 @@ export const HeroBackground = ({
 					strokeWidth="2"
 				>
 					<circle cx="50" cy="50" r="20" />
-					<circle
-						cx="50"
-						cy="50"
-						r="35"
-						strokeDasharray="8 8"
-						opacity="0.5"
-					/>
+					<circle cx="50" cy="50" r="35" strokeDasharray="8 8" opacity="0.5" />
 				</svg>
 			</motion.div>
 		</div>

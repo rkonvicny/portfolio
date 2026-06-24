@@ -1,17 +1,10 @@
-import {
-	Contact,
-	Experience,
-	Footer,
-	Hero,
-	Navbar,
-	Skills,
-} from "@/components";
+import { Contact, Experience, Footer, Hero, Navbar, Skills } from "@/components";
 import { di } from "@infrastructure/di";
 
 export default async function Home() {
 	const [experience, skills] = await Promise.all([
 		di.getExperienceUseCase.execute(),
-		di.getSkillsUseCase.execute(),
+		di.getSkillsUseCase.execute()
 	]);
 
 	return (

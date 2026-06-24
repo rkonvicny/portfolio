@@ -10,15 +10,13 @@ interface ProjectsProps {
 }
 
 export const Projects = ({ projects }: ProjectsProps) => {
-	const [activeFilter, setActiveFilter] = useState<
-		"all" | "frontend" | "backend" | "fullstack"
-	>("all");
+	const [activeFilter, setActiveFilter] = useState<"all" | "frontend" | "backend" | "fullstack">(
+		"all"
+	);
 	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
 	const filteredProjects =
-		activeFilter === "all"
-			? projects
-			: projects.filter((p) => p.category === activeFilter);
+		activeFilter === "all" ? projects : projects.filter((p) => p.category === activeFilter);
 
 	const getCategoryLabel = (cat: string) => {
 		switch (cat) {
@@ -34,31 +32,26 @@ export const Projects = ({ projects }: ProjectsProps) => {
 	};
 
 	return (
-		<section
-			id="projects"
-			className="py-24 bg-zinc-50/50 dark:bg-zinc-950/20 relative"
-		>
+		<section id="projects" className="py-24 bg-zinc-50/50 dark:bg-zinc-950/20 relative">
 			<div className="max-w-6xl mx-auto px-6">
 				{/* Nadpis sekce */}
 				<SectionHeader subtitle="Portfolio" title="Vybrané projekty" />
 
 				{/* Filtry */}
 				<div className="flex flex-wrap items-center justify-center gap-3 mb-12 select-none">
-					{(["all", "frontend", "backend", "fullstack"] as const).map(
-						(filter) => (
-							<button
-								key={filter}
-								onClick={() => setActiveFilter(filter)}
-								className={`px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
-									activeFilter === filter
-										? "bg-brand-primary text-white shadow-md shadow-brand-primary/20 dark:bg-brand-secondary dark:text-zinc-950 dark:shadow-brand-secondary/20"
-										: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
-								}`}
-							>
-								{filter === "all" ? "Vše" : getCategoryLabel(filter)}
-							</button>
-						),
-					)}
+					{(["all", "frontend", "backend", "fullstack"] as const).map((filter) => (
+						<button
+							key={filter}
+							onClick={() => setActiveFilter(filter)}
+							className={`px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+								activeFilter === filter
+									? "bg-brand-primary text-white shadow-md shadow-brand-primary/20 dark:bg-brand-secondary dark:text-zinc-950 dark:shadow-brand-secondary/20"
+									: "bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+							}`}
+						>
+							{filter === "all" ? "Vše" : getCategoryLabel(filter)}
+						</button>
+					))}
 				</div>
 
 				{/* Mřížka projektů */}

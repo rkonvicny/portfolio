@@ -5,19 +5,17 @@ export class ContactMessage {
 		public readonly name: string,
 		public readonly email: string,
 		public readonly subject: string,
-		public readonly message: string,
+		public readonly message: string
 	) {}
 
 	public static create(
 		name: string,
 		email: string,
 		subject: string,
-		message: string,
+		message: string
 	): ContactMessage {
-		if (!name || !email || !message) {
-			throw new ValidationError(
-				"Chybí povinná pole (jméno, e-mail nebo zpráva).",
-			);
+		if (!name?.trim() || !email?.trim() || !message?.trim() || !subject?.trim()) {
+			throw new ValidationError("Chybí povinná pole (jméno, e-mail, předmět nebo zpráva).");
 		}
 
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

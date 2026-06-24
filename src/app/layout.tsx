@@ -6,12 +6,12 @@ import { ThemeProvider } from "@/context/ThemeContext";
 
 const ubuntu = Ubuntu_Sans({
 	variable: "--font-ubuntu-sans",
-	subsets: ["latin"],
+	subsets: ["latin"]
 });
 
 const ubuntuMono = Ubuntu_Sans_Mono({
 	variable: "--font-ubuntu-sans-mono",
-	subsets: ["latin"],
+	subsets: ["latin"]
 });
 
 // const geistSans = Geist({
@@ -28,11 +28,11 @@ import portfolioData from "@/data/portfolio.json";
 
 export const metadata: Metadata = {
 	title: `${portfolioData.personal.siteTitle} | ${portfolioData.personal.role}`,
-	description: portfolioData.personal.bio,
+	description: portfolioData.personal.bio
 };
 
 export default function RootLayout({
-	children,
+	children
 }: Readonly<{
 	children: React.ReactNode;
 }>) {

@@ -7,7 +7,7 @@ export class MockEmailService implements IEmailService {
 		await new Promise((resolve) => setTimeout(resolve, 1200));
 
 		console.log(
-			`[MockEmailService] Odesílám e-mail od ${contactMessage.name} (${contactMessage.email})`,
+			`[MockEmailService] Odesílám e-mail od ${contactMessage.name} (${contactMessage.email})`
 		);
 		console.log(`Předmět: ${contactMessage.subject || "Bez předmětu"}`);
 		console.log(`Text: ${contactMessage.message}`);

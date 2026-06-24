@@ -8,10 +8,7 @@ interface SectionHeaderProps {
 	subtitle: string;
 }
 
-export const SectionHeader: React.FC<SectionHeaderProps> = ({
-	title,
-	subtitle,
-}) => {
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, subtitle }) => {
 	return (
 		<div className="text-center mb-16">
 			<h2 className="text-xs font-bold tracking-widest text-brand-primary dark:text-brand-secondary uppercase mb-3">

@@ -12,7 +12,7 @@ export async function POST(request: Request) {
 			name,
 			email,
 			subject,
-			message,
+			message
 		});
 
 		return NextResponse.json({ success: true }, { status: 200 });
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
 
 		return NextResponse.json(
 			{ error: "Při zpracování zprávy došlo k chybě na serveru." },
-			{ status: 500 },
+			{ status: 500 }
 		);
 	}
 }

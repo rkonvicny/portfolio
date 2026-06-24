@@ -6,6 +6,12 @@ export class SmtpEmailService implements IEmailService {
 	private transporter: nodemailer.Transporter;
 
 	constructor() {
+		if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+			throw new Error(
+				"[SmtpEmailService] Chybí SMTP údaje v .env (SMTP_USER, SMTP_PASS)."
+			);
+		}
+
 		// Konfigurace transportu pro Seznam SMTP
 		this.transporter = nodemailer.createTransport({
 			host: "smtp.seznam.cz",
@@ -13,18 +19,12 @@ export class SmtpEmailService implements IEmailService {
 			secure: true, // true for 465, false for other ports
 			auth: {
 				user: process.env.SMTP_USER,
-				pass: process.env.SMTP_PASS,
-			},
+				pass: process.env.SMTP_PASS
+			}
 		});
 	}
 
 	public async sendEmail(contactMessage: ContactMessage): Promise<void> {
-		if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-			console.warn("[SmtpEmailService] Chybí SMTP údaje v .env. Odesílám mock.");
-			console.log("Mock zpráva:", contactMessage);
-			return;
-		}
-
 		try {
 			await this.transporter.sendMail({
 				from: `"Portfolio Kontakt" <${process.env.SMTP_USER}>`, // E-mail odesílatele (musí patřit k účtu na Seznamu)
@@ -40,9 +40,11 @@ export class SmtpEmailService implements IEmailService {
 						<hr />
 						<p style="white-space: pre-wrap;">${contactMessage.message}</p>
 					</div>
-				`,
+				`
 			});
-			console.log(`[SmtpEmailService] Zpráva od ${contactMessage.email} byla úspěšně odeslána.`);
+			console.log(
+				`[SmtpEmailService] Zpráva od ${contactMessage.email} byla úspěšně odeslána.`
+			);
 		} catch (error) {
 			console.error("[SmtpEmailService] Chyba při odesílání e-mailu:", error);
 			throw new Error("Nepodařilo se odeslat e-mail. Zkuste to prosím později.");
