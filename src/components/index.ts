@@ -6,3 +6,4 @@ export * from "./hero-background";
 export * from "./navbar";
 export * from "./projects";
 export * from "./skills";
+export * from "./section-header";

@@ -1,6 +1,8 @@
 "use client";
 
 import { ExperienceItem } from "@/domain/entities/experience-item";
+import portfolioData from "@/data/portfolio.json";
+import { SectionHeader } from "./section-header";
 
 interface ExperienceProps {
 	experience: ExperienceItem[];
@@ -14,15 +16,7 @@ export const Experience = ({ experience }: ExperienceProps) => {
 
 			<div className="max-w-4xl mx-auto px-6 relative z-10">
 				{/* Nadpis sekce */}
-				<div className="text-center mb-16">
-					<h2 className="text-xs font-bold tracking-widest text-brand-primary dark:text-brand-secondary uppercase mb-3">
-						Historie
-					</h2>
-					<p className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white mb-4">
-						Zkušenosti a vzdělání
-					</p>
-					<div className="h-1 w-12 bg-brand-primary dark:bg-brand-secondary mx-auto rounded-full" />
-				</div>
+				<SectionHeader subtitle="Kariéra" title="Pracovní zkušenosti a vzdělání" />
 
 				{/* Vertikální časová osa */}
 				<div className="relative border-l border-zinc-200 dark:border-zinc-800 ml-4 md:ml-6 flex flex-col gap-12">
@@ -92,6 +86,43 @@ export const Experience = ({ experience }: ExperienceProps) => {
 							</div>
 						</div>
 					))}
+				</div>
+
+				{/* Znalost jazyků pod časovou osou */}
+				<div className="mt-16 ml-4 md:ml-6 relative pl-8 md:pl-10">
+					{/* Fake uzel na ose */}
+					<span className="absolute -left-4.25 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-white dark:bg-zinc-950 border-2 border-brand-primary dark:border-brand-secondary">
+						<svg
+							className="w-4 h-4 text-brand-primary dark:text-brand-secondary"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							strokeWidth={2}
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+							/>
+						</svg>
+					</span>
+
+					<div className="bg-brand-primary/5 dark:bg-brand-secondary/5 border border-brand-primary/20 dark:border-brand-secondary/20 rounded-2xl p-6 transition-all duration-300 hover:translate-x-1">
+						<h3 className="text-lg font-bold text-zinc-950 dark:text-white mb-3 flex items-center gap-2">
+							Jazykové znalosti
+						</h3>
+						<ul className="flex flex-col gap-2">
+							{portfolioData.personal.languages.map((lang, idx) => (
+								<li
+									key={idx}
+									className="text-sm font-medium text-zinc-700 dark:text-zinc-300 flex items-center gap-2"
+								>
+									<span className="w-1.5 h-1.5 rounded-full bg-brand-primary dark:bg-brand-secondary shrink-0" />
+									{lang}
+								</li>
+							))}
+						</ul>
+					</div>
 				</div>
 			</div>
 		</section>

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import portfolioData from "@/data/portfolio.json";
 import { HeroBackground } from "./hero-background";
 
-const { personal } = portfolioData;
+const { personal, pageSettings } = portfolioData;
 const typewriterWords = personal.typewriterWords;
 
 export const Hero = () => {
@@ -84,51 +84,68 @@ export const Hero = () => {
 				</div>
 
 				{/* Hlavní titulek */}
-				<h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+				<h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
 					Ahoj, já jsem{" "}
-					<span className="bg-clip-text text-transparent bg-linear-to-r from-brand-primary via-brand-secondary to-brand-accent animate-glow">
+					<span
+						className={
+							pageSettings.enableNameGradient
+								? `bg-clip-text text-transparent bg-linear-to-r from-brand-primary via-brand-secondary to-brand-accent ${pageSettings.enableNameGlow ? "animate-glow" : ""}`
+								: "text-zinc-900 dark:text-white"
+						}
+					>
 						{personal.name}
 					</span>
 				</h1>
-
-				{/* Dynamický podtitulek s psacím efektem */}
-				<h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-zinc-600 dark:text-zinc-400 mb-8 min-h-10">
-					Hledáte{" "}
-					<span className="text-zinc-900 dark:text-white font-semibold border-r-2 border-brand-primary dark:border-brand-secondary pr-1 animate-pulse">
-						{currentText}
-					</span>
-				</h2>
-
+				{pageSettings.enableTypewriterSection && (
+					<>
+						{/* Dynamický podtitulek s psacím efektem */}
+						<h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-zinc-600 dark:text-zinc-400 mb-8 min-h-10">
+							Hledáte{" "}
+							<span className="text-zinc-900 dark:text-white font-semibold border-r-2 border-brand-primary dark:border-brand-secondary pr-1 animate-pulse">
+								{currentText}
+							</span>
+						</h2>
+					</>
+				)}
 				{/* Krátké shrnutí */}
 				<p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-10 leading-relaxed">
 					{personal.bio}
 				</p>
+				{pageSettings.enableButtonBar && (
+					<>
+						{/* CTA Tlačítka */}
+						<div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+							{/* Tlačítko Kontaktovat */}
+							<a
+								href="#contact"
+								onClick={handleScrollToContact}
+								className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-brand-primary text-white font-medium hover:bg-brand-primary/95 hover:shadow-lg hover:shadow-brand-primary/25 transition-all text-center duration-300 cursor-pointer"
+							>
+								Kontaktujte mě
+							</a>
 
-				{/* CTA Tlačítka */}
-				<div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-					{/* Tlačítko Kontaktovat */}
-					<a
-						href="#contact"
-						onClick={handleScrollToContact}
-						className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-brand-primary text-white font-medium hover:bg-brand-primary/95 hover:shadow-lg hover:shadow-brand-primary/25 transition-all text-center duration-300 cursor-pointer"
-					>
-						Kontaktujte mě
-					</a>
-
-					{/* Tlačítko Projekty */}
-					<a
-						href="#projects"
-						onClick={(e) => {
-							e.preventDefault();
-							document
-								.getElementById("projects")
-								?.scrollIntoView({ behavior: "smooth" });
-						}}
-						className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 font-medium hover:bg-zinc-100/60 dark:hover:bg-zinc-800/40 backdrop-blur-xs transition-all text-center duration-300 cursor-pointer"
-					>
-						Zobrazit projekty
-					</a>
-				</div>
+							{/* Tlačítko Zkušenosti */}
+							<a
+								href="#experience"
+								onClick={(e) => {
+									e.preventDefault();
+									const element = document.getElementById("experience");
+									if (element) {
+										const yOffset = -80;
+										const y =
+											element.getBoundingClientRect().top +
+											window.scrollY +
+											yOffset;
+										window.scrollTo({ top: y, behavior: "smooth" });
+									}
+								}}
+								className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 font-medium hover:bg-zinc-100/60 dark:hover:bg-zinc-800/40 backdrop-blur-xs transition-all text-center duration-300 cursor-pointer"
+							>
+								Prohlédnout kariéru
+							</a>
+						</div>
+					</>
+				)}
 			</div>
 
 			{/* Šipka dolů pro rolování */}

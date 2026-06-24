@@ -1,157 +1,314 @@
 {
-  "personal": {
-    "name": "Konrád",
-    "role": "Full-stack Vývojář",
-    "email": "hello@konr.dev",
-    "github": "https://github.com/konr",
-    "linkedin": "https://linkedin.com/in/konr",
-    "bio": "Navrhuji a vyvíjím robustní full-stack aplikace, které vynikají skvělým uživatelským rozhraním, rychlým načítáním a moderní architekturou.",
-    "typewriterWords": [
-      "Full-stack Vývojáře.",
-      "Specialistu na Next.js & React.",
-      "Tvůrce moderních webových aplikací.",
-      "Nadšence do TypeScriptu & Node.js."
-    ],
-    "siteTitle": "Konr.dev"
-  },
-  "experience": [
-    {
-      "id": "exp-1",
-      "role": "Senior Full-stack Vývojář",
-      "company": "TechCorp s.r.o.",
-      "period": "2024 - Současnost",
-      "description": [
-        "Návrh a vývoj robustních cloudových webových aplikací za použití Next.js, Node.js a TypeScriptu.",
-        "Optimalizace databázových dotazů a indexace v PostgreSQL, což vedlo k 30% zrychlení odezvy API.",
-        "Vedení vývoje klíčových modulů aplikace a mentoring juniornějších členů týmu."
-      ],
-      "type": "work"
-    },
-    {
-      "id": "exp-2",
-      "role": "Full-stack Vývojář",
-      "company": "WebStudio CZ",
-      "period": "2022 - 2024",
-      "description": [
-        "Implementace komplexních e-commerce řešení na míru s integrací platebních bran (Stripe, GP webpay).",
-        "Tvorba a údržba REST API a integrace externích logistických systémů (Zásilkovna, Balíkovna).",
-        "Refaktorizace starších React aplikací do Next.js s cílem zlepšit SEO a rychlost načítání."
-      ],
-      "type": "work"
-    },
-    {
-      "id": "exp-3",
-      "role": "Junior Frontend Developer",
-      "company": "AppAgency",
-      "period": "2020 - 2022",
-      "description": [
-        "Kódování pixel-perfect responzivních rozhraní podle grafických předloh ve Figmě.",
-        "Vývoj interaktivních komponent v Reactu a správa globálního stavu pomocí Redux Toolkit.",
-        "Optimalizace webů pro mobilní zařízení a odstraňování cross-browser chyb."
-      ],
-      "type": "work"
-    },
-    {
-      "id": "edu-1",
-      "role": "Informační Technologie (Bc.)",
-      "company": "Vysoké učení technické",
-      "period": "2017 - 2020",
-      "description": [
-        "Bakalářské studium zaměřené na základy softwarového inženýrství, algoritmy, datové struktury a správu databází.",
-        "Praktické projekty zaměřené na objektově orientované programování (C++, Java) a základy webových technologií."
-      ],
-      "type": "education"
-    }
-  ],
-  "projects": [
-    {
-      "id": "ecommerce",
-      "title": "E-commerce Platforma (NeonTech)",
-      "shortDesc": "Plně responzivní online obchod s technologickými doplňky, košíkem a simulací platby.",
-      "fullDesc": "Moderní e-shop zaměřený na prodej prémiových klávesnic, myší a audio doplňků. Obsahuje pokročilé vyhledávání, filtrování produktů podle kategorií a parametrů, plně funkční nákupní košík uložený v session a proces dokončení objednávky (checkout).",
-      "image": "/projects/ecommerce.jpg",
-      "tags": ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma"],
-      "category": "fullstack",
-      "features": [
-        "Dynamický katalog s filtrováním a řazením",
-        "Perzistentní nákupní košík",
-        "Administrační panel pro správu produktů a objednávek",
-        "Zabezpečené API routy s JWT autentizací",
-        "Optimalizované načítání obrázků pomocí Next.js Image"
-      ],
-      "githubUrl": "https://github.com",
-      "liveUrl": "https://google.com"
-    },
-    {
-      "id": "dashboard",
-      "title": "SaaS Analytický Dashboard (Nexus)",
-      "shortDesc": "Interaktivní administrační panel pro analýzu finančních a uživatelských dat v reálném čase.",
-      "fullDesc": "Komplexní dashboard pro SaaS aplikace, který přehledně vizualizuje klíčové metriky (revenue, active users, churn rate). Data jsou vykreslována pomocí interaktivních grafů s podporou tooltipů a filtrování podle časového období.",
-      "image": "/projects/dashboard.jpg",
-      "tags": ["React", "Next.js", "Tailwind v4", "Chart.js", "Mock API"],
-      "category": "frontend",
-      "features": [
-        "Vizuálně přitažlivé grafy (sloupcové, liniové, koláčové)",
-        "Správa uživatelů a nastavení plánů předplatného",
-        "Export přehledů do formátů CSV a PDF",
-        "Plně responzivní layout a podpora tmavého režimu",
-        "Rychlé vyhledávání a stránkování v tabulkách"
-      ],
-      "githubUrl": "https://github.com",
-      "liveUrl": "https://google.com"
-    },
-    {
-      "id": "chat",
-      "title": "Real-time Chat Aplikace (Luminal)",
-      "shortDesc": "Komunikační nástroj s podporou chatovacích místností, sdílení souborů a indikátoru psaní.",
-      "fullDesc": "Pokročilá chatovací platforma podobná Slacku nebo Discordu. Umožňuje uživatelům vytvářet veřejné i soukromé kanály, odesílat zprávy v reálném čase, reagovat pomocí emoji, sdílet soubory a vidět, kdo právě píše nebo je online.",
-      "image": "/projects/chat.jpg",
-      "tags": ["Next.js", "Node.js", "Socket.io", "Redis", "MongoDB"],
-      "category": "fullstack",
-      "features": [
-        "Okamžitý přenos zpráv pomocí WebSockets (Socket.io)",
-        "Stav přítomnosti uživatelů (online/offline/nepřítomen)",
-        "Indikátor psaní v reálném čase (Typing...)",
-        "Ukládání historie zpráv v MongoDB a mezipaměť v Redis",
-        "Podpora nahrávání a náhledu obrázků"
-      ],
-      "githubUrl": "https://github.com",
-      "liveUrl": "https://google.com"
-    }
-  ],
-  "skills": [
-    {
-      "id": "frontend",
-      "title": "Frontend",
-      "skills": [
-        { "name": "React / Next.js", "level": 90 },
-        { "name": "TypeScript", "level": 85 },
-        { "name": "HTML5 & CSS3 / Tailwind", "level": 95 },
-        { "name": "JavaScript (ES6+)", "level": 90 },
-        { "name": "Redux / Zustand", "level": 75 }
-      ]
-    },
-    {
-      "id": "backend",
-      "title": "Backend & Databáze",
-      "skills": [
-        { "name": "Node.js (Express / NestJS)", "level": 85 },
-        { "name": "PostgreSQL / MySQL", "level": 80 },
-        { "name": "MongoDB", "level": 85 },
-        { "name": "REST API & GraphQL", "level": 90 },
-        { "name": "Redis", "level": 70 }
-      ]
-    },
-    {
-      "id": "devops",
-      "title": "Nástroje & DevOps",
-      "skills": [
-        { "name": "Git & GitHub / GitLab", "level": 90 },
-        { "name": "Docker", "level": 75 },
-        { "name": "Linux / Bash", "level": 80 },
-        { "name": "Vercel / Netlify / AWS", "level": 85 },
-        { "name": "CI/CD Pipelines", "level": 70 }
-      ]
-    }
-  ]
+	"pageSettings": {
+		"enableNameGlow": false,
+		"enableNameGradient": false,
+		"enableTypewriterSection": false,
+		"enableButtonBar": false,
+		"enableExtendedSectionHeader": false,
+    "enableThemeSwitcher": false
+	},
+	"personal": {
+		"name": "Radim Konvičný",
+		"role": "Full Stack developer / Software architekt",
+		"email": "konr@konr.cz",
+		"phone": "+420 776 161 831",
+		"location": "Nový Jičín, Česká republika",
+		"github": "https://github.com/konr",
+		"linkedin": "https://linkedin.com/in/konr",
+		"bio": "Zkušený softwarový inženýr se zaměřením na Full Stack vývoj, softwarovou architekturu a návrh REST API. Mám hluboké zkušenosti s platformou .NET (C#), moderním JavaScriptem a agilním řízením (Scrum, Kanban). Specializuji se také na PLM systémy a automatizaci.",
+		"typewriterWords": [
+			"Full Stack Developera.",
+			"Software Architekta.",
+			"Experta na .NET a Web.",
+			"Fanouška agilních metodik."
+		],
+		"siteTitle": "Radim Konvičný - Portfolio",
+		"languages": [
+			"Čeština (Rodilý mluvčí)",
+			"Angličtina (Čtení technické dokumentace, základní komunikace)"
+		]
+	},
+	"experience": [
+		{
+			"id": "exp-dytron",
+			"role": "Softwarový inženýr / Full-Stack Developer",
+			"company": "Dytron s.r.o., Nový Jičín",
+			"period": "2008 - 2025",
+			"description": [
+				"Komplexní péče o svěřené zákazníky napříč 17 lety: od komunikace a řešení požadavků (přes Redmine) až po realizaci dodávek.",
+				"Návrh a implementace rozsáhlých serverových a klientských customizací v C# / .NET s využitím Entity Frameworku.",
+				"Instalace, administrace a plná customizace PDM/PLM systémů (SmarTeam, 3DEXPERIENCE) v rámci serverových i klientských prostředí.",
+				"Správa a údržba rozsáhlých databází Oracle napojených na systém SmarTeam přímo v infrastruktuře zákazníků.",
+				"Vývoj automatizačních maker a specializovaných klientských aplikací pro CATIA V5 (v C# a CATVBA) s úzkou vazbou na PDM systém.",
+				"Vývoj interaktivních frontendových widgetů pro platformu 3DEXPERIENCE s využitím JavaScriptu, RequireJS a Kendo UI.",
+				"Návrh REST API v C# a vývoj vlastních endpointů v Javě pro zpřístupnění chybějících funkcionalit jádra 3DEXPERIENCE.",
+				"Komplexní administrace interního linuxového serveru (Ubuntu) a webového serveru Apache, plná správa Redmine a instancí WordPressu.",
+				"Vývoj vlastních pluginů a rozšíření pro systém Redmine s využitím frameworku Ruby on Rails.",
+				"Aplikace principů UML (PlantUML) pro návrh a dokumentaci architektury."
+			],
+			"type": "work"
+		},
+		{
+			"id": "exp-lg",
+			"role": "Vývojový a procesní inženýr",
+			"company": "LG.Philips Displays (Multidisplay), Hranice",
+			"period": "2001 - 2007",
+			"description": [
+				"Optimalizace a správa specifických výrobních zařízení v masové produkci CRT obrazovek.",
+				"Aplikace principů metodiky Six Sigma pro průběžnou analýzu dat, ladění technických parametrů a maximalizaci výtěžnosti.",
+				"Globální dohled napříč výrobními procesy: sledování trendů v měření, identifikace odchylek a vyhledávání kořenových příčin problémů (Root Cause Analysis).",
+				"Denní troubleshooting, odstraňování závad ve výrobě a úzká součinnost s ostatními inženýry a odděleními."
+			],
+			"type": "work"
+		},
+		{
+			"id": "exp-dotep",
+			"role": "Energetik / Technický analytik",
+			"company": "Dotep-CT s.r.o.",
+			"period": "1999 - 2000",
+			"description": [
+				"Komplexní analýza a vyhodnocování naměřených dat z odběrných míst, kotelen a výměníkových stanic.",
+				"Správa související energetické a technické administrativy.",
+				"Vývoj webové aplikace v technologii ASP pro online vizualizaci a prezentaci výsledků měření odběratelům."
+			],
+			"type": "work"
+		},
+		{
+			"id": "exp-cwh-1",
+			"role": "Konstruktér",
+			"company": "CWH Comwood housing s.r.o.",
+			"period": "1995 - 1998",
+			"description": [
+				"Konstrukce montovaných dřevostaveb s využitím profesionálních nástrojů AutoCAD, CADKON a Allplan.",
+				"Tvorba komplexních 3D vizualizací návrhů v programu trueSpace.",
+				"Programování a vývoj vlastní aplikace v jazyce AutoLISP pro automatizované generování konstrukčních prvků."
+			],
+			"type": "work"
+		},
+		{
+			"id": "exp-ak",
+			"role": "Projektant",
+			"company": "AK Architektonická kancelář, Frenštát p.R.",
+			"period": "1994 - 1995",
+			"description": [
+				"Kompletní tvorba výkresové dokumentace a 3D design v programu ArchiCAD.",
+				"Programování a modelování parametrických uživatelských 3D objektů pomocí jazyka GDL."
+			],
+			"type": "work"
+		},
+		{
+			"id": "exp-cwh-2",
+			"role": "Projektant",
+			"company": "CWH Comwood housing s.r.o.",
+			"period": "1993 - 1994",
+			"description": [
+				"Konstrukce montovaných dřevostaveb s využitím profesionálních nástrojů AutoCAD, CADKON a Allplan.",
+				"Tvorba komplexních 3D vizualizací návrhů v programu trueSpace.",
+				"Programování a vývoj vlastní aplikace v jazyce AutoLISP pro automatizované generování konstrukčních prvků."
+			],
+			"type": "work"
+		},
+		{
+			"id": "exp-pozstav",
+			"role": "Programátor",
+			"company": "Pozemní stavby Nový Jičín",
+			"period": "1991 - 1993",
+			"description": [
+				"Komplexní správa firemního softwaru a hardwarového vybavení.",
+				"Návrh a vývoj vlastních uživatelských databázových aplikací na míru v prostředí FoxBase."
+			],
+			"type": "work"
+		},
+		{
+			"id": "exp-osp",
+			"role": "Projektant",
+			"company": "OSP Nový Jičín",
+			"period": "1988 - 1991",
+			"description": [
+				"Projektování a konstrukční práce v oboru.",
+				"Kompletní implementace systému AutoCAD do podnikového prostředí.",
+				"Vývoj na míru psaných rozšíření a customizace nástrojů pomocí jazyka AutoLISP."
+			],
+			"type": "work"
+		},
+		{
+			"id": "edu-spss",
+			"role": "Technická zařízení budov (Maturita)",
+			"company": "Střední průmyslová škola stavební, Nový Jičín",
+			"period": "1984 - 1988",
+			"description": [
+				"Kompletní středoškolské vzdělání s maturitou se zaměřením na technická zařízení budov."
+			],
+			"type": "education"
+		}
+	],
+	"projects": [
+		{
+			"id": "plm-integration",
+			"title": "3DEXPERIENCE & SmarTeam Customizace",
+			"shortDesc": "Klientská a serverová rozšíření PDM/PLM systémů pro zefektivnění vývoje produktů.",
+			"fullDesc": "Tvorba hlubokých integrací pro platformy Dassault Systèmes. Zahrnuje psaní automatizačních maker, propojování dat do ERP systémů přes REST API a tvorbu uživatelských formulářů ve WinForms a WPF v C#. Aplikace zrychlily rutinní workflow inženýrů o desítky procent.",
+			"image": "/projects/pdm.jpg",
+			"tags": ["C#", ".NET", "WinForms", "WPF", "PLM", "REST API"],
+			"category": "backend",
+			"features": [
+				"Optimalizace životního cyklu produktů",
+				"Automatizace výkresové dokumentace",
+				"Komplexní napojení na databázové struktury a Entity Framework"
+			],
+			"githubUrl": "",
+			"liveUrl": ""
+		},
+		{
+			"id": "blazor-app",
+			"title": "Webový interní portál (Blazor)",
+			"shortDesc": "Moderní webové řešení postavené nad ekosystémem .NET.",
+			"fullDesc": "Kompletní přesun starších desktopových nástrojů do moderního webového prostředí. Portál slouží pro správu uživatelů, reportování dat a agilní plánování úkolů. Využívá Blazor pro frontend a zabezpečené .NET Core REST API na straně serveru.",
+			"image": "/projects/blazor.jpg",
+			"tags": ["Blazor", "C#", ".NET Core", "SQL", "Web API"],
+			"category": "fullstack",
+			"features": [
+				"Single Page Application (SPA) v C#",
+				"Responzivní UI design",
+				"Integrace s podnikovým Active Directory"
+			],
+			"githubUrl": "",
+			"liveUrl": ""
+		},
+		{
+			"id": "agile-tooling",
+			"title": "Nástroje pro Agilní řízení & Redmine",
+			"shortDesc": "Zavádění automatizací a pluginů do nástroje Redmine pro řízení CI/CD a Scrumu.",
+			"fullDesc": "Vývoj rozšíření a kompletní správa systému Redmine. Integrace na Gitea/Gitlab repozitáře pro automatické zavírání úkolů při Pull Requestech. Konfigurace Redmine Agile pluginu pro přehlednější Kanban nástěnky.",
+			"image": "/projects/redmine.jpg",
+			"tags": ["Ruby on Rails", "Linux", "Apache", "Git", "DevOps"],
+			"category": "devops",
+			"features": [
+				"Automatizace CI/CD procesů",
+				"Nasazení na Apache web server",
+				"Generování denních reportů produktivity"
+			],
+			"githubUrl": "",
+			"liveUrl": ""
+		}
+	],
+	"skills": [
+		{
+			"id": "languages",
+			"title": "Programovací jazyky",
+			"skills": [
+				{ "name": "C#", "level": 95 },
+				{ "name": "JavaScript", "level": 90 },
+				{ "name": "TypeScript", "level": 80 },
+				{ "name": "Ruby", "level": 75 },
+				{ "name": "Visual Basic for Applications (VBA)", "level": 80 },
+				{ "name": "HTML & CSS", "level": 80 },
+				{ "name": "PowerShell / Bash", "level": 70 }
+			]
+		},
+		{
+			"id": "backend",
+			"title": "Backend & API",
+			"skills": [
+				{ "name": ".NET Core / .NET", "level": 95 },
+				{ "name": "ASP.NET", "level": 90 },
+				{ "name": "Node.JS", "level": 85 },
+				{ "name": "Express.js", "level": 80 },
+				{ "name": "Hono", "level": 75 },
+				{ "name": "Ruby on Rails", "level": 75 },
+				{ "name": "REST API Development", "level": 95 },
+				{ "name": "GraphQL", "level": 70 },
+				{ "name": "Swagger / OpenAPI", "level": 85 },
+				{ "name": "Postman", "level": 85 },
+				{ "name": "SOAP & Web Services", "level": 70 },
+				{ "name": "API Design & Middleware", "level": 85 }
+			]
+		},
+		{
+			"id": "database",
+			"title": "Databáze & ORM",
+			"skills": [
+				{ "name": "Oracle", "level": 80 },
+				{ "name": "Microsoft SQL (MS SQL)", "level": 85 },
+				{ "name": "PostgreSQL", "level": 75 },
+				{ "name": "SQL & Relational Databases", "level": 85 },
+				{ "name": "Entity Framework", "level": 90 },
+				{ "name": "Prisma", "level": 70 },
+				{ "name": "Object-Relational Mapping (ORM)", "level": 85 }
+			]
+		},
+		{
+			"id": "frontend",
+			"title": "Frontend & UI",
+			"skills": [
+				{ "name": "Next.js", "level": 85 },
+				{ "name": "React", "level": 85 },
+				{ "name": "Tailwind CSS", "level": 90 },
+				{ "name": "Figma (Design to Code)", "level": 80 },
+				{ "name": "Storybook", "level": 75 },
+				{ "name": "Docusaurus", "level": 70 },
+				{ "name": "WinForms", "level": 95 },
+				{ "name": "WPF", "level": 95 },
+				{ "name": "Kendo UI", "level": 85 },
+				{ "name": "Webpack", "level": 70 },
+				{ "name": "JSON", "level": 95 },
+				{ "name": "UI Design", "level": 75 }
+			]
+		},
+		{
+			"id": "pdm",
+			"title": "PLM, CAD & Enterprise Nástroje",
+			"skills": [
+				{ "name": "Product Lifecycle Management (PLM)", "level": 95 },
+				{ "name": "Product Data Management (PDM)", "level": 95 },
+				{ "name": "ENOVIA SmarTeam", "level": 95 },
+				{ "name": "3DEXPERIENCE", "level": 90 },
+				{ "name": "CATIA V5", "level": 90 },
+				{ "name": "Mechanical & Project Design", "level": 75 }
+			]
+		},
+		{
+			"id": "architecture",
+			"title": "Softwarová architektura",
+			"skills": [
+				{ "name": "C4 Model", "level": 85 },
+				{ "name": "UML / PlantUML", "level": 90 },
+				{ "name": "BPMN", "level": 85 },
+				{ "name": "ICONIX Methodology", "level": 80 }
+			]
+		},
+		{
+			"id": "devops",
+			"title": "DevOps, Nástroje & Agilita",
+			"skills": [
+				{ "name": "Git / GitHub", "level": 90 },
+				{ "name": "Docker", "level": 80 },
+				{ "name": "Cloudflare / Tunnels", "level": 80 },
+				{ "name": "Tailscale", "level": 75 },
+				{ "name": "SVN", "level": 95 },
+				{ "name": "CI/CD", "level": 70 },
+				{ "name": "GitHub Actions", "level": 65 },
+				{ "name": "Azure DevOps", "level": 65 },
+				{ "name": "Linux", "level": 75 },
+				{ "name": "Apache HTTP Server", "level": 75 },
+				{ "name": "Visual Studio", "level": 95 },
+				{ "name": "Visual Studio Code", "level": 90 },
+				{ "name": "Eclipse", "level": 75 },
+				{ "name": "Six Sigma", "level": 85 },
+				{ "name": "Scrum / Kanban", "level": 85 },
+				{ "name": "Redmine Administration", "level": 90 },
+				{ "name": "WordPress Administration", "level": 80 }
+			]
+		},
+		{
+			"id": "ai",
+			"title": "Umělá inteligence & AI nástroje",
+			"skills": [
+				{ "name": "Google Gemini", "level": 85 },
+				{ "name": "GitHub Copilot", "level": 85 },
+				{ "name": "Antigravity", "level": 80 },
+				{ "name": "NotebookLM", "level": 80 }
+			]
+		}
+	]
 }

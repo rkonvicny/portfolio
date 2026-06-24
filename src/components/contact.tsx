@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import portfolioData from "@/data/portfolio.json";
+import { SectionHeader } from "./section-header";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
 
@@ -73,15 +75,7 @@ export const Contact = () => {
 		>
 			<div className="max-w-6xl mx-auto px-6 relative z-10">
 				{/* Nadpis sekce */}
-				<div className="text-center mb-16">
-					<h2 className="text-xs font-bold tracking-widest text-brand-primary dark:text-brand-secondary uppercase mb-3">
-						Kontakt
-					</h2>
-					<p className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white mb-4">
-						Napište mi zprávu
-					</p>
-					<div className="h-1 w-12 bg-brand-primary dark:bg-brand-secondary mx-auto rounded-full" />
-				</div>
+				<SectionHeader subtitle="Kontakt" title="Napište mi zprávu" />
 
 				{/* Rozdělení: Kontaktní informace vlevo, Formulář vpravo */}
 				<div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
@@ -120,10 +114,10 @@ export const Contact = () => {
 										E-mail
 									</h4>
 									<a
-										href="mailto:konrad@example.com"
+										href={`mailto:${portfolioData.personal.email}`}
 										className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 hover:text-brand-primary dark:hover:text-brand-secondary transition-colors"
 									>
-										konrad@example.com
+										{portfolioData.personal.email}
 									</a>
 								</div>
 							</div>
@@ -150,10 +144,10 @@ export const Contact = () => {
 										Telefon
 									</h4>
 									<a
-										href="tel:+420123456789"
+										href={`tel:${portfolioData.personal.phone.replace(/\s+/g, "")}`}
 										className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 hover:text-brand-primary dark:hover:text-brand-secondary transition-colors"
 									>
-										+420 123 456 789
+										{portfolioData.personal.phone}
 									</a>
 								</div>
 							</div>
@@ -185,7 +179,7 @@ export const Contact = () => {
 										Lokalita
 									</h4>
 									<p className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
-										Praha / Brno, Česká republika
+										{portfolioData.personal.location}
 									</p>
 								</div>
 							</div>

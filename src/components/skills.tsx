@@ -3,6 +3,7 @@
 import React from "react";
 
 import { SkillCategory } from "@/domain/entities/skill-category";
+import { SectionHeader } from "./section-header";
 
 interface SkillsProps {
 	categories: SkillCategory[];
@@ -60,6 +61,81 @@ const iconMap: Record<string, React.ReactNode> = {
 			/>
 		</svg>
 	),
+	database: (
+		<svg
+			className="w-6 h-6 text-brand-primary"
+			fill="none"
+			stroke="currentColor"
+			viewBox="0 0 24 24"
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				strokeWidth={2}
+				d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m-12 5c0 2.21 3.582 4 8 4s8-1.79 8-4"
+			/>
+		</svg>
+	),
+	architecture: (
+		<svg
+			className="w-6 h-6 text-brand-secondary"
+			fill="none"
+			stroke="currentColor"
+			viewBox="0 0 24 24"
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				strokeWidth={2}
+				d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+			/>
+		</svg>
+	),
+	pdm: (
+		<svg
+			className="w-6 h-6 text-brand-accent"
+			fill="none"
+			stroke="currentColor"
+			viewBox="0 0 24 24"
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				strokeWidth={2}
+				d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+			/>
+		</svg>
+	),
+	languages: (
+		<svg
+			className="w-6 h-6 text-brand-primary"
+			fill="none"
+			stroke="currentColor"
+			viewBox="0 0 24 24"
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				strokeWidth={2}
+				d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+			/>
+		</svg>
+	),
+	ai: (
+		<svg
+			className="w-6 h-6 text-purple-500"
+			fill="none"
+			stroke="currentColor"
+			viewBox="0 0 24 24"
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				strokeWidth={2}
+				d="M13 10V3L4 14h7v7l9-11h-7z"
+			/>
+		</svg>
+	),
 };
 
 export const Skills = ({ categories }: SkillsProps) => {
@@ -71,15 +147,7 @@ export const Skills = ({ categories }: SkillsProps) => {
 
 			<div className="max-w-6xl mx-auto px-6 relative z-10">
 				{/* Nadpis sekce */}
-				<div className="text-center mb-16">
-					<h2 className="text-xs font-bold tracking-widest text-brand-primary dark:text-brand-secondary uppercase mb-3">
-						Schopnosti
-					</h2>
-					<p className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white mb-4">
-						Co všechno dokážu vytvořit
-					</p>
-					<div className="h-1 w-12 bg-brand-primary dark:bg-brand-secondary mx-auto rounded-full" />
-				</div>
+				<SectionHeader subtitle="Schopnosti" title="Co všechno dokážu vytvořit" />
 
 				{/* Mřížka kategorií */}
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -98,26 +166,15 @@ export const Skills = ({ categories }: SkillsProps) => {
 								</h3>
 							</div>
 
-							{/* Seznam dovedností */}
-							<div className="flex flex-col gap-6">
+							{/* Seznam dovedností (Tag Cloud) */}
+							<div className="flex flex-wrap gap-2.5">
 								{category.skills.map((skill) => (
-									<div key={skill.name} className="flex flex-col gap-2">
-										<div className="flex justify-between items-center text-sm">
-											<span className="font-semibold text-zinc-800 dark:text-zinc-300">
-												{skill.name}
-											</span>
-											<span className="font-bold text-brand-primary dark:text-brand-secondary">
-												{skill.level}%
-											</span>
-										</div>
-										{/* Lišta průběhu */}
-										<div className="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
-											<div
-												className="h-full bg-linear-to-r from-brand-primary to-brand-secondary rounded-full transition-all duration-1000 ease-out"
-												style={{ width: `${skill.level}%` }}
-											/>
-										</div>
-									</div>
+									<span 
+										key={skill.name} 
+										className="inline-flex items-center px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 bg-zinc-100/80 text-zinc-800 dark:bg-zinc-800/60 dark:text-zinc-200 border border-zinc-200/80 dark:border-zinc-700/50 hover:border-brand-primary/50 dark:hover:border-brand-secondary/50 hover:bg-white dark:hover:bg-zinc-800 shadow-[0_2px_8px_-4px_rgba(0,0,0,0.1)] dark:shadow-none hover:-translate-y-0.5"
+									>
+										{skill.name}
+									</span>
 								))}
 							</div>
 						</div>

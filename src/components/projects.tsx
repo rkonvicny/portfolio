@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-
 import { Project } from "@/domain/entities/project";
+import { SectionHeader } from "./section-header";
 
 interface ProjectsProps {
 	projects: Project[];
@@ -40,15 +40,7 @@ export const Projects = ({ projects }: ProjectsProps) => {
 		>
 			<div className="max-w-6xl mx-auto px-6">
 				{/* Nadpis sekce */}
-				<div className="text-center mb-12">
-					<h2 className="text-xs font-bold tracking-widest text-brand-primary dark:text-brand-secondary uppercase mb-3">
-						Portfolio
-					</h2>
-					<p className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white mb-4">
-						Vybrané projekty
-					</p>
-					<div className="h-1 w-12 bg-brand-primary dark:bg-brand-secondary mx-auto rounded-full" />
-				</div>
+				<SectionHeader subtitle="Portfolio" title="Vybrané projekty" />
 
 				{/* Filtry */}
 				<div className="flex flex-wrap items-center justify-center gap-3 mb-12 select-none">

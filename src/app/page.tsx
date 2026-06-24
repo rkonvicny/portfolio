@@ -4,14 +4,12 @@ import {
 	Footer,
 	Hero,
 	Navbar,
-	Projects,
 	Skills,
 } from "@/components";
 import { di } from "@infrastructure/di";
 
 export default async function Home() {
-	const [projects, experience, skills] = await Promise.all([
-		di.getProjectsUseCase.execute(),
+	const [experience, skills] = await Promise.all([
 		di.getExperienceUseCase.execute(),
 		di.getSkillsUseCase.execute(),
 	]);
@@ -28,9 +26,6 @@ export default async function Home() {
 
 				{/* Schopnosti (Skills) */}
 				<Skills categories={skills} />
-
-				{/* Projekty (Projects) */}
-				<Projects projects={projects} />
 
 				{/* Zkušenosti (Experience Timeline) */}
 				<Experience experience={experience} />
