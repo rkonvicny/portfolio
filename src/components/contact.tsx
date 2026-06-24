@@ -31,7 +31,12 @@ export const Contact = () => {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim() || !formData.subject.trim()) {
+		if (
+			!formData.name.trim() ||
+			!formData.email.trim() ||
+			!formData.message.trim() ||
+			!formData.subject.trim()
+		) {
 			setErrorMessage(
 				"Prosím vyplňte všechna povinná pole (Jméno, E-mail, Předmět, Zpráva)."
 			);

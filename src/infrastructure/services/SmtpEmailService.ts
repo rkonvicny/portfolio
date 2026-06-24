@@ -7,9 +7,7 @@ export class SmtpEmailService implements IEmailService {
 
 	constructor() {
 		if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-			throw new Error(
-				"[SmtpEmailService] Chybí SMTP údaje v .env (SMTP_USER, SMTP_PASS)."
-			);
+			throw new Error("[SmtpEmailService] Chybí SMTP údaje v .env (SMTP_USER, SMTP_PASS).");
 		}
 
 		// Konfigurace transportu pro Seznam SMTP

@@ -2,12 +2,7 @@ import { ContactMessage } from "@/domain/entities/contact-message";
 import { IEmailService } from "@domain/ports/IEmailService";
 import { ValidationError } from "@/domain/errors/validation-error";
 
-export interface SubmitContactFormDTO {
-	name: string;
-	email: string;
-	subject: string;
-	message: string;
-}
+import { SubmitContactFormDTO } from "@/domain/entities/submit-contact-form-dto";
 
 export class SubmitContactFormUseCase {
 	constructor(private readonly emailService: IEmailService) {}

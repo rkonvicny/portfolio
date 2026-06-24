@@ -10,8 +10,7 @@ import { GetSkillsUseCase } from "@/application/use-cases/get-skills-use-case";
 import { IEmailService } from "@domain/ports/IEmailService";
 
 // Inicializace infrastrukturních závislostí
-const hasSmtpCredentials =
-	Boolean(process.env.SMTP_USER) && Boolean(process.env.SMTP_PASS);
+const hasSmtpCredentials = Boolean(process.env.SMTP_USER) && Boolean(process.env.SMTP_PASS);
 
 const emailService: IEmailService = hasSmtpCredentials
 	? new SmtpEmailService()
