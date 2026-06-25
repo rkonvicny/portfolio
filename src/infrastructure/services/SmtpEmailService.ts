@@ -27,14 +27,14 @@ export class SmtpEmailService implements IEmailService {
 		try {
 			const safeName = escapeHtml(contactMessage.name);
 			const safeEmail = escapeHtml(contactMessage.email);
-			const safeSubject = escapeHtml(contactMessage.subject || "Není vyplněn");
+			const safeSubject = escapeHtml(contactMessage.subject);
 			const safeMessage = escapeHtml(contactMessage.message);
 
 			await this.transporter.sendMail({
 				from: `"Portfolio Kontakt" <${process.env.SMTP_USER}>`, // E-mail odesílatele (musí patřit k účtu na Seznamu)
 				to: "konr@konr.cz", // E-mail příjemce (ty sám sobě)
 				replyTo: contactMessage.email, // Umožní ti kliknout na "Odpovědět"
-				subject: `[Nová poptávka] ${contactMessage.subject || "Zpráva z webu"} - od ${contactMessage.name}`,
+				subject: `[Nová poptávka] ${contactMessage.subject} - od ${contactMessage.name}`,
 				text: `Dostal jsi novou zprávu z portfolia.\n\nOd: ${contactMessage.name} (${contactMessage.email})\n\nZpráva:\n${contactMessage.message}`,
 				html: `
 					<div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
