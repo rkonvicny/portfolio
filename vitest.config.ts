@@ -5,14 +5,14 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: 'node',
+    environment: 'jsdom',
     globals: true,
-    setupFiles: ['./vitest.setup.ts'],
+    setupFiles: ['./vitest.setup.tsx'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       include: ['src/**/*.ts', 'src/**/*.tsx'],
-      exclude: ['src/domain/entities/**', 'src/domain/ports/**', 'src/app/layout.tsx', 'src/app/page.tsx']
+      exclude: ['src/domain/entities/**', 'src/domain/ports/**', 'src/app/layout.tsx', 'src/app/page.tsx', 'src/components/index.ts', 'src/components/hero-background.tsx', 'src/domain/contact/ContactMessage.ts']
     },
   },
   resolve: {
