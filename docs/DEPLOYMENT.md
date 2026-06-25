@@ -50,7 +50,7 @@ docker build -t portfolio-web:latest .
 
 ## 4. Spuštění přes Dockge (compose.yml)
 
-Dockge se stará pouze o běh samotného kontejneru a napojení na Traefik pomocí štítků (labels). 
+Dockge se stará pouze o běh samotného kontejneru a napojení na Traefik pomocí štítků (labels).
 
 Soubor `~/docker/portfolio/compose.yml` vypadá následovně:
 
@@ -60,14 +60,14 @@ services:
     image: portfolio-web:latest
     container_name: portfolio-web
     restart: unless-stopped
-    
+
     # Načtení env proměnných (relativní cesta ke složce Dockge)
     env_file:
       - .env.production
-      
+
     networks:
       - proxy
-      
+
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=proxy"
@@ -84,6 +84,7 @@ networks:
 ```
 
 ### Spuštění:
+
 1. Otevřete webové rozhraní **Dockge**.
 2. Rozklikněte stack **portfolio**.
 3. Klikněte na **Start** / **Deploy**.

@@ -1,6 +1,7 @@
 import { IEmailService } from "@domain/ports/IEmailService";
 import { ContactMessage } from "@/domain/entities/contact-message";
 import nodemailer from "nodemailer";
+import escapeHtml from "escape-html";
 
 export class SmtpEmailService implements IEmailService {
 	private transporter: nodemailer.Transporter;
@@ -24,6 +25,11 @@ export class SmtpEmailService implements IEmailService {
 
 	public async sendEmail(contactMessage: ContactMessage): Promise<void> {
 		try {
+			const safeName = escapeHtml(contactMessage.name);
+			const safeEmail = escapeHtml(contactMessage.email);
+			const safeSubject = escapeHtml(contactMessage.subject || "Není vyplněn");
+			const safeMessage = escapeHtml(contactMessage.message);
+
 			await this.transporter.sendMail({
 				from: `"Portfolio Kontakt" <${process.env.SMTP_USER}>`, // E-mail odesílatele (musí patřit k účtu na Seznamu)
 				to: "konr@konr.cz", // E-mail příjemce (ty sám sobě)
@@ -33,10 +39,10 @@ export class SmtpEmailService implements IEmailService {
 				html: `
 					<div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
 						<h2>Nová zpráva z tvého portfolia</h2>
-						<p><strong>Od:</strong> ${contactMessage.name} (<a href="mailto:${contactMessage.email}">${contactMessage.email}</a>)</p>
-						<p><strong>Předmět:</strong> ${contactMessage.subject || "Není vyplněn"}</p>
+						<p><strong>Od:</strong> ${safeName} (<a href="mailto:${safeEmail}">${safeEmail}</a>)</p>
+						<p><strong>Předmět:</strong> ${safeSubject}</p>
 						<hr />
-						<p style="white-space: pre-wrap;">${contactMessage.message}</p>
+						<p style="white-space: pre-wrap;">${safeMessage}</p>
 					</div>
 				`
 			});
