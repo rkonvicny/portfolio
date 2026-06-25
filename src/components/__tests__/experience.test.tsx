@@ -21,7 +21,7 @@ const mockExperience: ExperienceItem[] = [
     id: '1',
     role: 'Software Engineer',
     company: 'Tech Corp',
-    duration: '2020 - Present',
+    period: '2020 - Present',
     description: ['Developed amazing things.', 'Fixed bugs.'],
     technologies: ['React', 'Node.js'],
     type: 'work'
@@ -30,7 +30,7 @@ const mockExperience: ExperienceItem[] = [
     id: '2',
     role: 'Junior Developer',
     company: 'Startup Inc',
-    duration: '2018 - 2020',
+    period: '2018 - 2020',
     description: ['Learned a lot.'],
     technologies: ['HTML', 'CSS', 'JavaScript'],
     type: 'education'
