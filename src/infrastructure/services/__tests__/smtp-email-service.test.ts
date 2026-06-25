@@ -5,16 +5,13 @@ import nodemailer from 'nodemailer';
 vi.mock('nodemailer');
 
 describe('SmtpEmailService', () => {
-	const originalEnv = process.env;
-
-	beforeEach(() => {
-		// Clone environment variables before each test
-		process.env = { ...originalEnv };
-	});
+	const originalSmtpUser = process.env.SMTP_USER;
+	const originalSmtpPass = process.env.SMTP_PASS;
 
 	afterEach(() => {
-		// Restore original environment variables after each test
-		process.env = originalEnv;
+		// Restore specific environment variables after each test
+		process.env.SMTP_USER = originalSmtpUser;
+		process.env.SMTP_PASS = originalSmtpPass;
 		vi.clearAllMocks();
 	});
 

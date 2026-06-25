@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { POST } from '../route';
-import { di } from '@/infrastructure/di';
+import { di } from '@infrastructure/di';
 import { ValidationError } from '@/domain/errors/validation-error';
 
 // Mock Next.js NextResponse
