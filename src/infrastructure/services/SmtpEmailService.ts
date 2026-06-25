@@ -39,7 +39,7 @@ export class SmtpEmailService implements IEmailService {
 				html: `
 					<div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
 						<h2>Nová zpráva z tvého portfolia</h2>
-						<p><strong>Od:</strong> ${safeName} (<a href="mailto:${safeEmail}">${safeEmail}</a>)</p>
+						<p><strong>Od:</strong> ${safeName} (<a href="mailto:${encodeURIComponent(contactMessage.email)}">${safeEmail}</a>)</p>
 						<p><strong>Předmět:</strong> ${safeSubject}</p>
 						<hr />
 						<p style="white-space: pre-wrap;">${safeMessage}</p>
