@@ -90,3 +90,10 @@ portfolio/
 ├── pnpm-workspace.yaml     # Konfigurace pnpm
 └── tailwind.config.js / postcss # Definice designového systému Tailwind v4
 ```
+
+---
+
+## 🚢 Nasazení na produkci (Deployment)
+
+Kompletní návod na nasazení aplikace (včetně konfigurace Dockeru, Traefiku a specifik Pnpm 11) naleznete v samostatném souboru:
+👉 **[DEPLOYMENT.md](./DEPLOYMENT.md)**
