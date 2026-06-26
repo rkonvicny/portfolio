@@ -41,9 +41,6 @@ export const Contact = () => {
 			!formData.message.trim() ||
 			!formData.subject.trim()
 		) {
-			toast.error("Chyba validace", {
-				description: "Prosím vyplňte všechna povinná pole (Jméno, E-mail, Předmět, Zpráva)."
-			});
 			return;
 		}
 
