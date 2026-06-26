@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { FiArrowDown } from "react-icons/fi";
 import portfolioData from "@/data/portfolio.json";
 import { appSettings } from "@/data/app-settings";
 import { PageBackground } from "./page-background";
@@ -154,19 +155,7 @@ export const Hero = () => {
 				<span className="text-xs text-zinc-400 dark:text-zinc-500 mb-2 uppercase tracking-widest font-semibold">
 					Více
 				</span>
-				<svg
-					className="w-6 h-6 text-zinc-400 dark:text-zinc-500"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						strokeWidth={2}
-						d="M19 14l-7 7m0 0l-7-7m7 7V3"
-					/>
-				</svg>
+				<FiArrowDown className="w-6 h-6 text-zinc-400 dark:text-zinc-500" />
 			</div>
 		</section>
 	);
