@@ -83,7 +83,7 @@ networks:
     external: true
 ```
 
-### Spuštění:
+### Spuštění
 
 1. Otevřete webové rozhraní **Dockge**.
 2. Rozklikněte stack **portfolio**.
@@ -99,8 +99,24 @@ Při jakékoliv budoucí úpravě zdrojových kódů vašeho portfolia je postup
 
 1. Aplikujte úpravy kódu v `~/projects/portfolio`.
 2. Znovu spusťte build příkaz:
+
    ```bash
    cd ~/projects/portfolio
    docker build -t portfolio-web:latest .
    ```
-3. Přejděte do webového rozhraní **Dockge** a u stacku `portfolio` klikněte na **Update/Restart**. (Dockge si sám sáhne po nejnovější verzi s tagem `latest` a provede hladký restart aplikace).
+
+3. Donuťte kontejner k znovuvytvoření (přegenerování) s novým obrazem. Na výběr máte dvě možnosti:
+
+   **Možnost A: Přes terminál (Nejrychlejší a spolehlivé)**
+   ```bash
+   cd ~/docker/portfolio
+   docker compose up -d
+   ```
+   *(Docker si všimne nového buildu obrazu, smaže starý kontejner a automaticky nahodí nový s aktuálním kódem).*
+
+   **Možnost B: Přes webové rozhraní Dockge**
+   1. Otevřete stack `portfolio`.
+   2. Klikněte vpravo nahoře na **Edit** (Upravit).
+   3. Nic v kódu neměňte a rovnou klikněte na **Deploy** (nebo Save & Deploy).
+   
+   > **POZOR:** Nikdy nepoužívejte pouhé tlačítko "Restart" na hlavní obrazovce Dockge. Restart slouží pouze k vypnutí a zapnutí stávajícího kontejneru (se starým obrazem) a neprojeví se v něm vaše nové změny!
