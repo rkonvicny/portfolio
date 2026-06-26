@@ -3,7 +3,12 @@
 import React, { useState } from "react";
 import portfolioData from "@/data/portfolio.json";
 import { SectionHeader } from "./section-header";
-import { FiMail, FiPhone, FiMapPin, FiCheck } from "react-icons/fi";
+import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { toast } from "sonner";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
 
@@ -22,7 +27,6 @@ export const Contact = () => {
 		message: ""
 	});
 	const [status, setStatus] = useState<FormStatus>("idle");
-	const [errorMessage, setErrorMessage] = useState("");
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = e.target;
@@ -37,15 +41,13 @@ export const Contact = () => {
 			!formData.message.trim() ||
 			!formData.subject.trim()
 		) {
-			setErrorMessage(
-				"Prosím vyplňte všechna povinná pole (Jméno, E-mail, Předmět, Zpráva)."
-			);
-			setStatus("error");
+			toast.error("Chyba validace", {
+				description: "Prosím vyplňte všechna povinná pole (Jméno, E-mail, Předmět, Zpráva)."
+			});
 			return;
 		}
 
 		setStatus("sending");
-		setErrorMessage("");
 
 		try {
 			const response = await fetch("/api/contact", {
@@ -55,25 +57,28 @@ export const Contact = () => {
 			});
 
 			if (response.ok) {
-				setStatus("success");
+				setStatus("idle");
 				setFormData({ name: "", email: "", subject: "", message: "" });
+				toast.success("Zpráva byla úspěšně odeslána!", {
+					description: "Děkuji za zprávu. Ozvu se vám zpět na uvedený e-mail co nejdříve."
+				});
 			} else {
 				const data = await response.json();
-				setErrorMessage(
-					data.error || "Odeslání zprávy se nezdařilo. Zkuste to prosím znovu."
-				);
-				setStatus("error");
+				setStatus("idle");
+				toast.error("Chyba při odesílání", {
+					description: data.error || "Odeslání zprávy se nezdařilo. Zkuste to prosím znovu."
+				});
 			}
 		} catch {
-			setErrorMessage(
-				"Došlo k chybě při komunikaci se serverem. Zkontrolujte prosím připojení."
-			);
-			setStatus("error");
+			setStatus("idle");
+			toast.error("Chyba spojení", {
+				description: "Došlo k chybě při komunikaci se serverem. Zkontrolujte prosím připojení."
+			});
 		}
 	};
 
 	return (
-		<section id="contact" className="py-24 bg-zinc-50/50 dark:bg-zinc-950/20 relative">
+		<section id="contact" className="py-24 relative">
 			<div className="max-w-6xl mx-auto px-6 relative z-10">
 				{/* Nadpis sekce */}
 				<SectionHeader subtitle="Kontakt" title="Napište mi zprávu" />
@@ -119,12 +124,9 @@ export const Contact = () => {
 									<h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
 										Telefon
 									</h4>
-									<a
-										href={`tel:${portfolioData.personal.phone.replace(/\s+/g, "")}`}
-										className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 hover:text-brand-primary dark:hover:text-brand-secondary transition-colors"
-									>
+									<p className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
 										{portfolioData.personal.phone}
-									</a>
+									</p>
 								</div>
 							</div>
 
@@ -147,29 +149,9 @@ export const Contact = () => {
 
 					{/* Formulář (3/5 šířky) */}
 					<div className="lg:col-span-3">
-						<div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-3xl p-6 sm:p-8">
-							{status === "success" ? (
-								// Success View
-								<div className="text-center py-10 flex flex-col items-center gap-4 select-none animate-fade-in-up">
-									<div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center animate-bounce">
-										<FiCheck className="w-8 h-8" strokeWidth={3} />
-									</div>
-									<h3 className="text-xl font-bold text-zinc-950 dark:text-white">
-										Zpráva byla úspěšně odeslána!
-									</h3>
-									<p className="text-sm text-zinc-600 dark:text-zinc-400 max-w-sm">
-										Děkuji za zprávu. Ozvu se vám zpět na uvedený e-mail co
-										nejdříve.
-									</p>
-									<button
-										onClick={() => setStatus("idle")}
-										className="mt-4 px-6 py-2 rounded-full border border-zinc-200 dark:border-zinc-800 text-sm font-semibold hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
-									>
-										Poslat další zprávu
-									</button>
-								</div>
-							) : (
-								// Form View
+						<Card className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-3xl shadow-none hover-card-trigger">
+							<CardContent className="p-6 sm:p-8">
+								{/* Form View */}
 								<form onSubmit={handleSubmit} className="flex flex-col gap-6">
 									{/* Jméno a E-mail v jednom řádku na desktopu */}
 									<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -180,7 +162,7 @@ export const Contact = () => {
 											>
 												Vaše jméno <span className="text-red-500">*</span>
 											</label>
-											<input
+											<Input
 												type="text"
 												id="name"
 												name="name"
@@ -188,8 +170,7 @@ export const Contact = () => {
 												onChange={handleChange}
 												required
 												disabled={status === "sending"}
-												/* placeholder="Celé jméno ..." */
-												className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-white/50 dark:bg-zinc-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary dark:focus:ring-brand-secondary transition-all"
+												className="h-12 px-4 py-3 bg-white/50 dark:bg-zinc-900/50 rounded-xl border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 focus-visible:ring-2 focus-visible:ring-brand-primary dark:focus-visible:ring-brand-secondary transition-all"
 											/>
 										</div>
 										<div className="flex flex-col gap-2">
@@ -199,7 +180,7 @@ export const Contact = () => {
 											>
 												E-mail <span className="text-red-500">*</span>
 											</label>
-											<input
+											<Input
 												type="email"
 												id="email"
 												name="email"
@@ -207,8 +188,7 @@ export const Contact = () => {
 												onChange={handleChange}
 												required
 												disabled={status === "sending"}
-												/* placeholder="např. jan.novak@email.cz" */
-												className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-white/50 dark:bg-zinc-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary dark:focus:ring-brand-secondary transition-all"
+												className="h-12 px-4 py-3 bg-white/50 dark:bg-zinc-900/50 rounded-xl border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 focus-visible:ring-2 focus-visible:ring-brand-primary dark:focus-visible:ring-brand-secondary transition-all"
 											/>
 										</div>
 									</div>
@@ -221,7 +201,7 @@ export const Contact = () => {
 										>
 											Předmět zprávy <span className="text-red-500">*</span>
 										</label>
-										<input
+										<Input
 											type="text"
 											id="subject"
 											name="subject"
@@ -229,8 +209,7 @@ export const Contact = () => {
 											onChange={handleChange}
 											required
 											disabled={status === "sending"}
-											/* placeholder="Např. Poptávka vývoje webu" */
-											className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-white/50 dark:bg-zinc-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary dark:focus:ring-brand-secondary transition-all"
+											className="h-12 px-4 py-3 bg-white/50 dark:bg-zinc-900/50 rounded-xl border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 focus-visible:ring-2 focus-visible:ring-brand-primary dark:focus-visible:ring-brand-secondary transition-all"
 										/>
 									</div>
 
@@ -242,7 +221,7 @@ export const Contact = () => {
 										>
 											Text zprávy <span className="text-red-500">*</span>
 										</label>
-										<textarea
+										<Textarea
 											id="message"
 											name="message"
 											rows={5}
@@ -250,28 +229,20 @@ export const Contact = () => {
 											onChange={handleChange}
 											required
 											disabled={status === "sending"}
-											/* placeholder="Sem napište svou zprávu..." */
-											className="w-full px-4 py-3 rounded-xl border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 bg-white/50 dark:bg-zinc-900/50 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary dark:focus:ring-brand-secondary transition-all resize-y min-h-30"
+											className="min-h-32 px-4 py-3 bg-white/50 dark:bg-zinc-900/50 rounded-xl border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 focus-visible:ring-2 focus-visible:ring-brand-primary dark:focus-visible:ring-brand-secondary transition-all"
 										/>
 									</div>
 
-									{/* Chybová zpráva */}
-									{status === "error" && (
-										<div className="p-4 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-semibold">
-											{errorMessage}
-										</div>
-									)}
-
 									{/* Odesílací tlačítko */}
-									<button
+									<Button
 										type="submit"
 										disabled={status === "sending"}
-										className="w-full py-3.5 rounded-xl bg-brand-primary text-white font-medium hover:bg-brand-primary/95 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+										className="w-full py-6 rounded-xl bg-brand-primary hover:bg-brand-primary/90 text-white font-medium"
 									>
 										{status === "sending" ? (
 											<>
 												<svg
-													className="animate-spin h-5 w-5 text-white"
+													className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
 													fill="none"
 													viewBox="0 0 24 24"
 												>
@@ -294,7 +265,7 @@ export const Contact = () => {
 										) : (
 											<>
 												<svg
-													className="w-4.5 h-4.5"
+													className="w-4.5 h-4.5 mr-2"
 													fill="none"
 													viewBox="0 0 24 24"
 													stroke="currentColor"
@@ -309,10 +280,10 @@ export const Contact = () => {
 												Odeslat zprávu
 											</>
 										)}
-									</button>
+									</Button>
 								</form>
-							)}
-						</div>
+							</CardContent>
+						</Card>
 					</div>
 				</div>
 			</div>

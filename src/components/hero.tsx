@@ -2,9 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import portfolioData from "@/data/portfolio.json";
-import { HeroBackground } from "./hero-background";
+import { appSettings } from "@/data/app-settings";
+import { PageBackground } from "./page-background";
 
-const { personal, pageSettings } = portfolioData;
+const { personal } = portfolioData;
+const { pageSettings } = appSettings;
 const typewriterWords = personal.typewriterWords;
 
 export const Hero = () => {
@@ -63,13 +65,8 @@ export const Hero = () => {
 			id="home"
 			className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden"
 		>
-			{/* Interaktivní parallax pozadí */}
-			<HeroBackground />
-
-			{/* Pozadí s neonovými zářemi (glow-bg) */}
-			<div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 glow-bg bg-brand-primary opacity-20 dark:opacity-30 w-72 h-72 sm:w-96 sm:h-96" />
-			<div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 glow-bg bg-brand-secondary opacity-20 dark:opacity-30 w-72 h-72 sm:w-96 sm:h-96" />
-			<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 glow-bg bg-brand-accent opacity-10 dark:opacity-15 w-80 h-80 sm:w-125 sm:h-125" />
+			{/* Pozadí - buď lokální pro hero, nebo ho obstará page.tsx globálně */}
+			{!pageSettings.enableGlobalBackground && <PageBackground />}
 
 			<div className="relative z-10 max-w-4xl mx-auto px-6 text-center select-none animate-fade-in-up">
 				{pageSettings.enableStatusRow && (

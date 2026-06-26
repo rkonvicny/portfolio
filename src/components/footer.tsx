@@ -21,7 +21,7 @@ export const Footer = () => {
 	};
 
 	return (
-		<footer className="py-6 border-t border-zinc-200 dark:border-zinc-900 bg-white dark:bg-gray-950 relative z-10 transition-colors duration-300">
+		<footer className="py-6  bg-white/50 dark:bg-gray-950/70 backdrop-blur-xl relative z-10 transition-colors duration-300">
 			<div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 relative">
 				{/* Copyright */}
 				<div className="text-center md:text-left select-none order-3 md:order-1">

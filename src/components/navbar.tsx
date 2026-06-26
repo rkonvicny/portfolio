@@ -3,10 +3,12 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import portfolioData from "@/data/portfolio.json";
+import { appSettings } from "@/data/app-settings";
 import { FaGithub } from "react-icons/fa";
 import { FiMoon, FiSun, FiMenu, FiX } from "react-icons/fi";
 
-const { pageSettings, personal } = portfolioData;
+const { pageSettings } = appSettings;
+const { personal } = portfolioData;
 
 const githubSocial = personal.socials?.find(
 	(s: { icon: string; url: string }) => s.icon === "github"

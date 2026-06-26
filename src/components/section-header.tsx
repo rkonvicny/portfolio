@@ -1,7 +1,7 @@
 import React from "react";
-import portfolioData from "@/data/portfolio.json";
+import { appSettings } from "@/data/app-settings";
 
-const { pageSettings } = portfolioData;
+const { pageSettings } = appSettings;
 
 interface SectionHeaderProps {
 	title: string;

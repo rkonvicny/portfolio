@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useMotionValue, useSpring, useTransform, useAnimationFrame } from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform, useAnimationFrame, useScroll } from "motion/react";
 import { useTheme } from "next-themes";
+import { appSettings } from "@/data/app-settings";
 
 interface Node {
 	baseX: number;
@@ -12,36 +13,39 @@ interface Node {
 }
 
 export interface HeroBackgroundProps {
-	/** Vzdálenost mezi jednotlivými uzly sítě v pixelech */
-	spacing?: number;
-	/** Poloměr (v pixelech) okolí kurzoru, kde působí magnetická síla */
-	pullRadius?: number;
-	/** Jak silně jsou body přitahovány k myši (0.1 = slabě, 1.0 = extrémně) */
-	pullStrength?: number;
-	/** Velikost (poloměr) samotných uzlů v pixelech */
-	nodeRadius?: number;
-	/** Tloušťka spojovacích čar */
-	lineWidth?: number;
-	/** Rychlost návratu bodu do původní pozice (0.01 = velmi pomalu, 0.5 = okamžitě) */
-	dampening?: number;
-	/** Plynulost sledování pohybu myši (0.05 = velmi zpožděné, 1.0 = instantní) */
-	mouseDampening?: number;
+	settings?: {
+		spacing?: number;
+		pullRadius?: number;
+		pullStrength?: number;
+		nodeRadius?: number;
+		lineWidth?: number;
+		dampening?: number;
+		mouseDampening?: number;
+	};
 }
 
-export const HeroBackground = ({
-	spacing = 80,
-	pullRadius = 400,
-	pullStrength = 0.9,
-	nodeRadius = 1.5,
-	lineWidth = 1,
-	dampening = 0.01,
-	mouseDampening = 0.01
-}: HeroBackgroundProps) => {
+export const HeroBackground = ({ settings }: HeroBackgroundProps) => {
+	const {
+		spacing = 80,
+		pullRadius = 400,
+		pullStrength = 0.9,
+		nodeRadius = 1.5,
+		lineWidth = 1,
+		dampening = 0.01,
+		mouseDampening = 0.01
+	} = settings ?? {};
+	
+	const { enableScrollParallax } = appSettings.pageSettings;
+
 	const mouseX = useMotionValue(0);
 	const mouseY = useMotionValue(0);
 
 	const springX = useSpring(mouseX, { stiffness: 40, damping: 20 });
 	const springY = useSpring(mouseY, { stiffness: 40, damping: 20 });
+
+	// Scroll parallax
+	const { scrollY } = useScroll();
+	const scrollYTransform = useTransform(scrollY, [0, 1000], [0, enableScrollParallax ? 300 : 0]);
 
 	// Různé vrstvy parallaxu s odlišnou rychlostí a směrem (původní tvary)
 	const x1 = useTransform(springX, (value) => value * 1.5);
@@ -267,7 +271,10 @@ export const HeroBackground = ({
 	});
 
 	return (
-		<div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+		<motion.div 
+			className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none"
+			style={{ y: scrollYTransform }}
+		>
 			{/* Canvas vrstva pro magnetickou trojúhelníkovou síť (Layer 3) */}
 			<motion.div
 				className="absolute inset-0 opacity-80"
@@ -328,6 +335,6 @@ export const HeroBackground = ({
 					<circle cx="50" cy="50" r="35" strokeDasharray="8 8" opacity="0.5" />
 				</svg>
 			</motion.div>
-		</div>
+		</motion.div>
 	);
 };

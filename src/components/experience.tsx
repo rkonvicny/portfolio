@@ -3,6 +3,8 @@
 import { ExperienceItem } from "@/domain/entities/experience-item";
 import portfolioData from "@/data/portfolio.json";
 import { SectionHeader } from "./section-header";
+import { FiBriefcase, FiBookOpen, FiGlobe } from "react-icons/fi";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface ExperienceProps {
 	experience: ExperienceItem[];
@@ -26,64 +28,45 @@ export const Experience = ({ experience }: ExperienceProps) => {
 							<span className="absolute -left-4.25 top-1.5 flex items-center justify-center w-8 h-8 rounded-full bg-white dark:bg-zinc-950 border-2 border-zinc-200 dark:border-zinc-800 group-hover:border-brand-primary dark:group-hover:border-brand-secondary transition-colors duration-300">
 								{item.type === "work" ? (
 									// Briefcase icon
-									<svg
-										className="w-4 h-4 text-zinc-500 dark:text-zinc-400 group-hover:text-brand-primary dark:group-hover:text-brand-secondary"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										strokeWidth={2}
-									>
-										<path
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4.674 12h4.652a2 2 0 001.995-1.858L19.5 8.25a2 2 0 00-2-2h-11a2 2 0 00-2 2l.349 7.892A2 2 0 006.848 18h4.652m4.674 0a3.987 3.987 0 01-9.348 0"
-										/>
-									</svg>
+									<FiBriefcase className="w-4 h-4 text-zinc-500 dark:text-zinc-400 group-hover:text-brand-primary dark:group-hover:text-brand-secondary" />
 								) : (
 									// Academic cap icon
-									<svg
-										className="w-4.5 h-4.5 text-zinc-500 dark:text-zinc-400 group-hover:text-brand-primary dark:group-hover:text-brand-secondary"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										strokeWidth={2}
-									>
-										<path d="M12 14l9-5-9-5-9 5 9 5z" />
-										<path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-									</svg>
+									<FiBookOpen className="w-4.5 h-4.5 text-zinc-500 dark:text-zinc-400 group-hover:text-brand-primary dark:group-hover:text-brand-secondary" />
 								)}
 							</span>
 
 							{/* Informační karta */}
-							<div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-2xl p-6 transition-all duration-300 group-hover:translate-x-1">
-								{/* Hlavička karty */}
-								<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-									<div>
-										<h3 className="text-lg font-bold text-zinc-950 dark:text-white group-hover:text-brand-primary dark:group-hover:text-brand-secondary transition-colors">
-											{item.role}
-										</h3>
-										<p className="text-sm font-semibold text-zinc-500 dark:text-zinc-400">
-											{item.company}
-										</p>
+							<Card className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-2xl shadow-none hover-card-trigger">
+								<CardContent className="p-6">
+									{/* Hlavička karty */}
+									<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+										<div>
+											<h3 className="text-lg font-bold text-zinc-950 dark:text-white group-hover:text-brand-primary dark:group-hover:text-brand-secondary transition-colors">
+												{item.role}
+											</h3>
+											<p className="text-sm font-semibold text-zinc-500 dark:text-zinc-400">
+												{item.company}
+											</p>
+										</div>
+										<span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/40 text-zinc-600 dark:text-zinc-400 self-start sm:self-center">
+											{item.period}
+										</span>
 									</div>
-									<span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/50 dark:border-zinc-800/40 text-zinc-600 dark:text-zinc-400 self-start sm:self-center">
-										{item.period}
-									</span>
-								</div>
 
-								{/* Popis činností */}
-								<ul className="flex flex-col gap-2.5">
-									{item.description.map((bullet, idx) => (
-										<li
-											key={idx}
-											className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex items-start gap-2.5"
-										>
-											<span className="w-1.5 h-1.5 rounded-full bg-brand-primary dark:bg-brand-secondary shrink-0 mt-2" />
-											<span>{bullet}</span>
-										</li>
-									))}
-								</ul>
-							</div>
+									{/* Popis činností */}
+									<ul className="flex flex-col gap-2.5">
+										{item.description.map((bullet, idx) => (
+											<li
+												key={idx}
+												className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex items-start gap-2.5"
+											>
+												<span className="w-1.5 h-1.5 rounded-full bg-brand-primary dark:bg-brand-secondary shrink-0 mt-2" />
+												<span>{bullet}</span>
+											</li>
+										))}
+									</ul>
+								</CardContent>
+							</Card>
 						</div>
 					))}
 				</div>
@@ -92,37 +75,27 @@ export const Experience = ({ experience }: ExperienceProps) => {
 				<div className="mt-16 ml-4 md:ml-6 relative pl-8 md:pl-10">
 					{/* Fake uzel na ose */}
 					<span className="absolute -left-4.25 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-white dark:bg-zinc-950 border-2 border-brand-primary dark:border-brand-secondary">
-						<svg
-							className="w-4 h-4 text-brand-primary dark:text-brand-secondary"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-							strokeWidth={2}
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-							/>
-						</svg>
+						<FiGlobe className="w-4 h-4 text-brand-primary dark:text-brand-secondary" />
 					</span>
 
-					<div className="bg-brand-primary/5 dark:bg-brand-secondary/5 border border-brand-primary/20 dark:border-brand-secondary/20 rounded-2xl p-6 transition-all duration-300 hover:translate-x-1">
-						<h3 className="text-lg font-bold text-zinc-950 dark:text-white mb-3 flex items-center gap-2">
-							Jazykové znalosti
-						</h3>
-						<ul className="flex flex-col gap-2">
-							{portfolioData.personal.languages.map((lang, idx) => (
-								<li
-									key={idx}
-									className="text-sm font-medium text-zinc-700 dark:text-zinc-300 flex items-center gap-2"
-								>
-									<span className="w-1.5 h-1.5 rounded-full bg-brand-primary dark:bg-brand-secondary shrink-0" />
-									{lang}
-								</li>
-							))}
-						</ul>
-					</div>
+					<Card className="bg-brand-primary/5 dark:bg-brand-secondary/5 border border-brand-primary/20 dark:border-brand-secondary/20 rounded-2xl shadow-none hover-card-trigger">
+						<CardContent className="p-6">
+							<h3 className="text-lg font-bold text-zinc-950 dark:text-white mb-3 flex items-center gap-2">
+								Jazykové znalosti
+							</h3>
+							<ul className="flex flex-col gap-2">
+								{portfolioData.personal.languages.map((lang, idx) => (
+									<li
+										key={idx}
+										className="text-sm font-medium text-zinc-700 dark:text-zinc-300 flex items-center gap-2"
+									>
+										<span className="w-1.5 h-1.5 rounded-full bg-brand-primary dark:bg-brand-secondary shrink-0" />
+										{lang}
+									</li>
+								))}
+							</ul>
+						</CardContent>
+					</Card>
 				</div>
 			</div>
 		</section>

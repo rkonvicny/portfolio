@@ -1,13 +1,4 @@
 {
-	"pageSettings": {
-		"enableStatusRow": false,
-		"enableNameGlow": false,
-		"enableNameGradient": false,
-		"enableTypewriterSection": false,
-		"enableButtonRow": false,
-		"enableExtendedSectionHeader": false,
-		"enableThemeSwitcher": true
-	},
 	"personal": {
 		"name": "Radim Konvičný",
 		"role": "Full Stack developer / Software architekt",
