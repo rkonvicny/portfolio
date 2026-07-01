@@ -36,6 +36,8 @@ export interface PageSettings {
 	enableGlassmorphism: boolean;
 	/** Aktivuje paralaxní efekt u mesh sítě při scrollování */
 	enableScrollParallax: boolean;
+	/** Zobrazení sekce projektů */
+	enableProjectsSection: boolean;
 }
 
 export interface AppSettings {
@@ -54,7 +56,8 @@ export const appSettings: AppSettings = {
 		enableThemeSwitcher: true,
 		enableGlobalBackground: true,
 		enableGlassmorphism: true,
-		enableScrollParallax: true
+		enableScrollParallax: true,
+		enableProjectsSection: true
 	},
 	backgroundSettings: {
 		spacing: 80,

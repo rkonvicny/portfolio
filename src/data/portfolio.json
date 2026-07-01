@@ -141,52 +141,67 @@
 	],
 	"projects": [
 		{
-			"id": "plm-integration",
-			"title": "3DEXPERIENCE & SmarTeam Customizace",
-			"shortDesc": "Klientská a serverová rozšíření PDM/PLM systémů pro zefektivnění vývoje produktů.",
-			"fullDesc": "Tvorba hlubokých integrací pro platformy Dassault Systèmes. Zahrnuje psaní automatizačních maker, propojování dat do ERP systémů přes REST API a tvorbu uživatelských formulářů ve WinForms a WPF v C#. Aplikace zrychlily rutinní workflow inženýrů o desítky procent.",
-			"image": "/projects/pdm.jpg",
-			"tags": ["C#", ".NET", "WinForms", "WPF", "PLM", "REST API"],
-			"category": "backend",
+			"id": "portfolio",
+			"title": "Osobní portfolio",
+			"shortDesc": "Moderní interaktivní osobní portfolio a životopis postavené na Next.js s čistou architekturou.",
+			"fullDesc": "Aplikace reprezentující mé profesní dovednosti a zkušenosti. Využívá moderní stack zahrnující Next.js, Tailwind CSS, shadcn/ui a Framer Motion pro plynulé animace. Celý kód je striktně strukturován pomocí Clean Architecture pro maximální udržitelnost a nezávislost na frameworcích.",
+			"image": "",
+			"tags": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion","Clean Architecture"],
+			"categories": ["frontend"],
 			"features": [
-				"Optimalizace životního cyklu produktů",
-				"Automatizace výkresové dokumentace",
-				"Komplexní napojení na databázové struktury a Entity Framework"
+				"Striktní využití Clean Architecture",
+				"Responzivní design a animace",
+				"Pokročilá podpora Dark/Light módu",
+				"Odesílání formulářů přes dedikované Use Cases"
 			],
-			"githubUrl": "",
-			"liveUrl": ""
+			"githubUrl": "https://github.com/rkonvicny",
+			"liveUrl": "https://www.konr.cz"
 		},
 		{
-			"id": "blazor-app",
-			"title": "Webový interní portál (Blazor)",
-			"shortDesc": "Moderní webové řešení postavené nad ekosystémem .NET.",
-			"fullDesc": "Kompletní přesun starších desktopových nástrojů do moderního webového prostředí. Portál slouží pro správu uživatelů, reportování dat a agilní plánování úkolů. Využívá Blazor pro frontend a zabezpečené .NET Core REST API na straně serveru.",
-			"image": "/projects/blazor.jpg",
-			"tags": ["Blazor", "C#", ".NET Core", "SQL", "Web API"],
-			"category": "fullstack",
+			"id": "dha-app",
+			"title": "Dynamic Headless App",
+			"shortDesc": "Moderní headless frontendová aplikace poháněná vlastním API.",
+			"fullDesc": "Komplexní klientská aplikace komunikující s dedikovaným API. Slouží k rychlé konzumaci dat a dynamickému vykreslování obsahu nezávisle na konkrétním backendu. Klade obrovský důraz na výkon, SEO a špičkové User Experience.",
+			"image": "",
+			"tags": ["React", "TypeScript", "Tailwind CSS", "Storybook", "Shadcn/UI","Clean Architecture"],
+			"categories": ["frontend", "fullstack"],
 			"features": [
-				"Single Page Application (SPA) v C#",
-				"Responzivní UI design",
-				"Integrace s podnikovým Active Directory"
+				"Striktní využití Clean Architecture",
+				"API-first přístup a konzumace headless dat",
+				"Vysoký výkon díky SSR a statické generaci",
+				"Kompletní oddělení vizuálu od business logiky"
 			],
 			"githubUrl": "",
-			"liveUrl": ""
+			"liveUrl": "https://dha.konr.cz"
 		},
 		{
-			"id": "agile-tooling",
-			"title": "Nástroje pro Agilní řízení & Redmine",
-			"shortDesc": "Zavádění automatizací a pluginů do nástroje Redmine pro řízení CI/CD a Scrumu.",
-			"fullDesc": "Vývoj rozšíření a kompletní správa systému Redmine. Integrace na Gitea/Gitlab repozitáře pro automatické zavírání úkolů při Pull Requestech. Konfigurace Redmine Agile pluginu pro přehlednější Kanban nástěnky.",
-			"image": "/projects/redmine.jpg",
-			"tags": ["Ruby on Rails", "Linux", "Apache", "Git", "DevOps"],
-			"category": "devops",
+			"id": "dha-api",
+			"title": "Dynamic Headless App API",
+			"shortDesc": "Zabezpečená a škálovatelná backendová služba pro Dynamic Headless aplikaci.",
+			"fullDesc": "Robustní a bleskurychlá API služba, která zpracovává a optimalizuje databázové dotazy a poskytuje strukturovaná data pro klientskou část Headless App. Systém je navržen s ohledem na vysokou dostupnost, bezpečnost a snadnou rozšiřitelnost.",
+			"image": "",
+			"tags": [
+				"Node.js",
+				"Backend",
+				"API",
+				"TypeScript",
+				"Database",
+				"Fullstack",
+				"Hono",
+				"Swagger",
+				"REST API",
+				"Clean Architecture",
+				"Prisma"
+			],
+			"categories": ["backend", "fullstack"],
 			"features": [
-				"Automatizace CI/CD procesů",
-				"Nasazení na Apache web server",
-				"Generování denních reportů produktivity"
+				"Striktní využití Clean Architecture",
+				"Rychlé a robustní endpointy",
+				"Architektura připravená na vysokou zátěž",
+				"Bezpečné zpracování a validace dat"
 			],
 			"githubUrl": "",
-			"liveUrl": ""
+			"liveUrl": "https://dha-api.konr.cz"
 		}
 	],
 	"skills": [

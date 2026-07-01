@@ -5,7 +5,7 @@ export interface Project {
 	fullDesc: string;
 	image: string;
 	tags: string[];
-	category: "frontend" | "backend" | "fullstack";
+	categories: string[];
 	features: string[];
 	githubUrl: string;
 	liveUrl: string;

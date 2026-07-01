@@ -1,12 +1,13 @@
-import { Contact, Experience, Footer, Hero, Navbar, Skills } from "@/components";
+import { Contact, Experience, Footer, Hero, Navbar, Skills, Projects } from "@/components";
 import { PageBackground } from "@/components/page-background";
 import { appSettings } from "@/data/app-settings";
 import { di } from "@infrastructure/di";
 
 export default async function Home() {
-	const [experience, skills] = await Promise.all([
+	const [experience, skills, projects] = await Promise.all([
 		di.getExperienceUseCase.execute(),
-		di.getSkillsUseCase.execute()
+		di.getSkillsUseCase.execute(),
+		di.getProjectsUseCase.execute()
 	]);
 
 	const { enableGlobalBackground, enableGlassmorphism } = appSettings.pageSettings;
@@ -36,6 +37,9 @@ export default async function Home() {
 				<div className={sectionBgClass}>
 					{/* Schopnosti (Skills) */}
 					<Skills categories={skills} />
+
+					{/* Projekty */}
+					<Projects projects={projects} />
 
 					{/* Zkušenosti (Experience Timeline) */}
 					<Experience experience={experience} />
