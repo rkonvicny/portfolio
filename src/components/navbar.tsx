@@ -22,6 +22,7 @@ interface NavLink {
 const navLinks: NavLink[] = [
 	{ label: "Domů", href: "#home" },
 	{ label: "Dovednosti", href: "#skills" },
+	{ label: "Projekty", href: "#projects" },
 	{ label: "Zkušenosti", href: "#experience" },
 	{ label: "Kontakt", href: "#contact" }
 ];
