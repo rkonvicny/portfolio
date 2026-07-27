@@ -154,7 +154,7 @@
 				"Pokročilá podpora Dark/Light módu",
 				"Odesílání formulářů přes dedikované Use Cases"
 			],
-			"githubUrl": "https://github.com/rkonvicny",
+			"githubUrl": "https://github.com/rkonvicny/portfolio",
 			"liveUrl": "https://www.konr.cz"
 		},
 		{
@@ -171,7 +171,7 @@
 				"Vysoký výkon díky SSR a statické generaci",
 				"Kompletní oddělení vizuálu od business logiky"
 			],
-			"githubUrl": "",
+			"githubUrl": "https://github.com/rkonvicny/dynamic-headless-app-v0.1-showcase",
 			"liveUrl": "https://dha.konr.cz"
 		},
 		{
