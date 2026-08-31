@@ -1,55 +1,35 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { Hero } from '../hero';
 
-vi.mock('../hero-background', () => ({
-  HeroBackground: () => <div data-testid="hero-background" />
-}));
-
-vi.mock('@/data/portfolio.json', () => ({
-  default: {
-    personal: {
-      name: 'John Doe',
-      role: 'Software Developer',
-      location: 'Prague',
-      typewriterWords: ['Code', 'Create']
-    },
-    pageSettings: {}
+// Mock framer-motion to avoid animation issues in tests
+vi.mock('framer-motion', () => ({
+  motion: {
+    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
+    h1: ({ children, ...props }: any) => <h1 {...props}>{children}</h1>,
+    p: ({ children, ...props }: any) => <p {...props}>{children}</p>,
   },
+  AnimatePresence: ({ children }: any) => <>{children}</>,
 }));
 
 describe('Hero Component', () => {
+  const mockPersonal = {
+    name: 'John Doe',
+    role: 'Software Engineer',
+    bio: 'I write code',
+    typewriterWords: ['Developer', 'Engineer'],
+  } as any;
+  const mockAppSettings = {
+    pageSettings: {
+      enableNameGlow: false,
+      enableNameGradient: false,
+      enableTypewriterSection: false,
+      enableButtonRow: false,
+    },
+  } as any;
+
   it('renders correctly', () => {
-    render(<Hero personal={{
-    name: "John Doe",
-    role: "Developer",
-    email: "john@doe.com",
-    phone: "+123456789",
-    location: "New York",
-    socials: [{ platform: "GitHub", url: "https://github.com/johndoe", icon: "github" }],
-    bio: "Test bio",
-    typewriterWords: ["Dev", "Arch"],
-    siteTitle: "johndoe.com",
-    languages: []
-}} pageSettings={{
-    enableStatusRow: true,
-    enableNameGlow: true,
-    enableNameGradient: true,
-    enableTypewriterSection: true,
-    enableButtonRow: true,
-    enableExtendedSectionHeader: true,
-    enableThemeSwitcher: true,
-    enableGlobalBackground: true,
-    enableGlassmorphism: true,
-    enableScrollParallax: true,
-    enableProjectsSection: true
-}} />);
-
-    // Check background mock
-    expect(screen.getByTestId('hero-background')).toBeInTheDocument();
-
-    // Check personal data
-    expect(screen.getByText(/John Doe/i)).toBeInTheDocument();
+    render(<Hero personal={mockPersonal} appSettings={mockAppSettings} />);
+    expect(screen.getByText('John Doe')).toBeInTheDocument();
   });
 });

@@ -9,4 +9,5 @@ export interface Project {
 	features: string[];
 	githubUrl: string;
 	liveUrl: string;
+	published?: boolean;
 }

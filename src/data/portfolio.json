@@ -142,12 +142,22 @@
 	"projects": [
 		{
 			"id": "portfolio",
+			"published": true,
 			"title": "Osobní portfolio",
 			"shortDesc": "Moderní interaktivní osobní portfolio a životopis postavené na Next.js s čistou architekturou.",
 			"fullDesc": "Aplikace reprezentující mé profesní dovednosti a zkušenosti. Využívá moderní stack zahrnující Next.js, Tailwind CSS, shadcn/ui a Framer Motion pro plynulé animace. Celý kód je striktně strukturován pomocí Clean Architecture pro maximální udržitelnost a nezávislost na frameworcích.",
 			"image": "",
-			"tags": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion","Clean Architecture"],
-			"categories": ["frontend"],
+			"tags": [
+				"Next.js",
+				"React",
+				"TypeScript",
+				"Tailwind CSS",
+				"Framer Motion",
+				"Clean Architecture"
+			],
+			"categories": [
+				"frontend"
+			],
 			"features": [
 				"Striktní využití Clean Architecture",
 				"Responzivní design a animace",
@@ -159,12 +169,23 @@
 		},
 		{
 			"id": "dha-app",
+			"published": true,
 			"title": "Dynamic Headless App",
 			"shortDesc": "Moderní headless frontendová aplikace poháněná vlastním API.",
 			"fullDesc": "Komplexní klientská aplikace komunikující s dedikovaným API. Slouží k rychlé konzumaci dat a dynamickému vykreslování obsahu nezávisle na konkrétním backendu. Klade obrovský důraz na výkon, SEO a špičkové User Experience.",
 			"image": "",
-			"tags": ["React", "TypeScript", "Tailwind CSS", "Storybook", "Shadcn/UI","Clean Architecture"],
-			"categories": ["frontend", "fullstack"],
+			"tags": [
+				"React",
+				"TypeScript",
+				"Tailwind CSS",
+				"Storybook",
+				"Shadcn/UI",
+				"Clean Architecture"
+			],
+			"categories": [
+				"frontend",
+				"fullstack"
+			],
 			"features": [
 				"Striktní využití Clean Architecture",
 				"API-first přístup a konzumace headless dat",
@@ -176,6 +197,7 @@
 		},
 		{
 			"id": "dha-api",
+			"published": true,
 			"title": "Dynamic Headless App API",
 			"shortDesc": "Zabezpečená a škálovatelná backendová služba pro Dynamic Headless aplikaci.",
 			"fullDesc": "Robustní a bleskurychlá API služba, která zpracovává a optimalizuje databázové dotazy a poskytuje strukturovaná data pro klientskou část Headless App. Systém je navržen s ohledem na vysokou dostupnost, bezpečnost a snadnou rozšiřitelnost.",
@@ -193,7 +215,10 @@
 				"Clean Architecture",
 				"Prisma"
 			],
-			"categories": ["backend", "fullstack"],
+			"categories": [
+				"backend",
+				"fullstack"
+			],
 			"features": [
 				"Striktní využití Clean Architecture",
 				"Rychlé a robustní endpointy",
@@ -209,117 +234,324 @@
 			"id": "languages",
 			"title": "Programovací jazyky",
 			"skills": [
-				{ "name": "C#", "level": 95 },
-				{ "name": "JavaScript", "level": 90 },
-				{ "name": "TypeScript", "level": 80 },
-				{ "name": "Ruby", "level": 75 },
-				{ "name": "Visual Basic for Applications (VBA)", "level": 80 },
-				{ "name": "HTML & CSS", "level": 80 },
-				{ "name": "PowerShell / Bash", "level": 70 }
+				{
+					"name": "C#",
+					"level": 95
+				},
+				{
+					"name": "JavaScript",
+					"level": 90
+				},
+				{
+					"name": "TypeScript",
+					"level": 80
+				},
+				{
+					"name": "Ruby",
+					"level": 75
+				},
+				{
+					"name": "Visual Basic for Applications (VBA)",
+					"level": 80
+				},
+				{
+					"name": "HTML & CSS",
+					"level": 80
+				},
+				{
+					"name": "PowerShell / Bash",
+					"level": 70
+				}
 			]
 		},
 		{
 			"id": "backend",
 			"title": "Backend & API",
 			"skills": [
-				{ "name": ".NET Core / .NET", "level": 95 },
-				{ "name": "ASP.NET", "level": 90 },
-				{ "name": "Node.JS", "level": 85 },
-				{ "name": "Express.js", "level": 80 },
-				{ "name": "Hono", "level": 75 },
-				{ "name": "Ruby on Rails", "level": 75 },
-				{ "name": "REST API Development", "level": 95 },
-				{ "name": "GraphQL", "level": 70 },
-				{ "name": "Swagger / OpenAPI", "level": 85 },
-				{ "name": "Postman", "level": 85 },
-				{ "name": "SOAP & Web Services", "level": 70 },
-				{ "name": "API Design & Middleware", "level": 85 }
+				{
+					"name": ".NET Core / .NET",
+					"level": 95
+				},
+				{
+					"name": "ASP.NET",
+					"level": 90
+				},
+				{
+					"name": "Node.JS",
+					"level": 85
+				},
+				{
+					"name": "Express.js",
+					"level": 80
+				},
+				{
+					"name": "Hono",
+					"level": 75
+				},
+				{
+					"name": "Ruby on Rails",
+					"level": 75
+				},
+				{
+					"name": "REST API Development",
+					"level": 95
+				},
+				{
+					"name": "GraphQL",
+					"level": 70
+				},
+				{
+					"name": "Swagger / OpenAPI",
+					"level": 85
+				},
+				{
+					"name": "Postman",
+					"level": 85
+				},
+				{
+					"name": "SOAP & Web Services",
+					"level": 70
+				},
+				{
+					"name": "API Design & Middleware",
+					"level": 85
+				}
 			]
 		},
 		{
 			"id": "database",
 			"title": "Databáze & ORM",
 			"skills": [
-				{ "name": "Oracle", "level": 80 },
-				{ "name": "Microsoft SQL (MS SQL)", "level": 85 },
-				{ "name": "PostgreSQL", "level": 75 },
-				{ "name": "SQL & Relational Databases", "level": 85 },
-				{ "name": "Entity Framework", "level": 90 },
-				{ "name": "Prisma", "level": 70 },
-				{ "name": "Object-Relational Mapping (ORM)", "level": 85 }
+				{
+					"name": "Oracle",
+					"level": 80
+				},
+				{
+					"name": "Microsoft SQL (MS SQL)",
+					"level": 85
+				},
+				{
+					"name": "PostgreSQL",
+					"level": 75
+				},
+				{
+					"name": "SQL & Relational Databases",
+					"level": 85
+				},
+				{
+					"name": "Entity Framework",
+					"level": 90
+				},
+				{
+					"name": "Prisma",
+					"level": 70
+				},
+				{
+					"name": "Object-Relational Mapping (ORM)",
+					"level": 85
+				}
 			]
 		},
 		{
 			"id": "frontend",
 			"title": "Frontend & UI",
 			"skills": [
-				{ "name": "Next.js", "level": 85 },
-				{ "name": "React", "level": 85 },
-				{ "name": "Tailwind CSS", "level": 90 },
-				{ "name": "Figma (Design to Code)", "level": 80 },
-				{ "name": "Storybook", "level": 75 },
-				{ "name": "Docusaurus", "level": 70 },
-				{ "name": "WinForms", "level": 95 },
-				{ "name": "WPF", "level": 95 },
-				{ "name": "Kendo UI", "level": 85 },
-				{ "name": "Webpack", "level": 70 },
-				{ "name": "JSON", "level": 95 },
-				{ "name": "UI Design", "level": 75 }
+				{
+					"name": "Next.js",
+					"level": 85
+				},
+				{
+					"name": "React",
+					"level": 85
+				},
+				{
+					"name": "Tailwind CSS",
+					"level": 90
+				},
+				{
+					"name": "Figma (Design to Code)",
+					"level": 80
+				},
+				{
+					"name": "Storybook",
+					"level": 75
+				},
+				{
+					"name": "Docusaurus",
+					"level": 70
+				},
+				{
+					"name": "WinForms",
+					"level": 95
+				},
+				{
+					"name": "WPF",
+					"level": 95
+				},
+				{
+					"name": "Kendo UI",
+					"level": 85
+				},
+				{
+					"name": "Webpack",
+					"level": 70
+				},
+				{
+					"name": "JSON",
+					"level": 95
+				},
+				{
+					"name": "UI Design",
+					"level": 75
+				}
 			]
 		},
 		{
 			"id": "pdm",
 			"title": "PLM, CAD & Enterprise Nástroje",
 			"skills": [
-				{ "name": "Product Lifecycle Management (PLM)", "level": 95 },
-				{ "name": "Product Data Management (PDM)", "level": 95 },
-				{ "name": "ENOVIA SmarTeam", "level": 95 },
-				{ "name": "3DEXPERIENCE", "level": 90 },
-				{ "name": "CATIA V5", "level": 90 },
-				{ "name": "Mechanical & Project Design", "level": 75 }
+				{
+					"name": "Product Lifecycle Management (PLM)",
+					"level": 95
+				},
+				{
+					"name": "Product Data Management (PDM)",
+					"level": 95
+				},
+				{
+					"name": "ENOVIA SmarTeam",
+					"level": 95
+				},
+				{
+					"name": "3DEXPERIENCE",
+					"level": 90
+				},
+				{
+					"name": "CATIA V5",
+					"level": 90
+				},
+				{
+					"name": "Mechanical & Project Design",
+					"level": 75
+				}
 			]
 		},
 		{
 			"id": "architecture",
 			"title": "Softwarová architektura",
 			"skills": [
-				{ "name": "C4 Model", "level": 85 },
-				{ "name": "UML / PlantUML", "level": 90 },
-				{ "name": "BPMN", "level": 85 },
-				{ "name": "ICONIX Methodology", "level": 80 }
+				{
+					"name": "C4 Model",
+					"level": 85
+				},
+				{
+					"name": "UML / PlantUML",
+					"level": 90
+				},
+				{
+					"name": "BPMN",
+					"level": 85
+				},
+				{
+					"name": "ICONIX Methodology",
+					"level": 80
+				}
 			]
 		},
 		{
 			"id": "devops",
 			"title": "DevOps, Nástroje & Agilita",
 			"skills": [
-				{ "name": "Git / GitHub", "level": 90 },
-				{ "name": "Docker", "level": 80 },
-				{ "name": "Cloudflare / Tunnels", "level": 80 },
-				{ "name": "Tailscale", "level": 75 },
-				{ "name": "SVN", "level": 95 },
-				{ "name": "CI/CD", "level": 70 },
-				{ "name": "GitHub Actions", "level": 65 },
-				{ "name": "Azure DevOps", "level": 65 },
-				{ "name": "Linux", "level": 75 },
-				{ "name": "Apache HTTP Server", "level": 75 },
-				{ "name": "Visual Studio", "level": 95 },
-				{ "name": "Visual Studio Code", "level": 90 },
-				{ "name": "Eclipse", "level": 75 },
-				{ "name": "Six Sigma", "level": 85 },
-				{ "name": "Scrum / Kanban", "level": 85 },
-				{ "name": "Redmine Administration", "level": 90 },
-				{ "name": "WordPress Administration", "level": 80 }
+				{
+					"name": "Git / GitHub",
+					"level": 90
+				},
+				{
+					"name": "Docker",
+					"level": 80
+				},
+				{
+					"name": "Cloudflare / Tunnels",
+					"level": 80
+				},
+				{
+					"name": "Tailscale",
+					"level": 75
+				},
+				{
+					"name": "SVN",
+					"level": 95
+				},
+				{
+					"name": "CI/CD",
+					"level": 70
+				},
+				{
+					"name": "GitHub Actions",
+					"level": 65
+				},
+				{
+					"name": "Azure DevOps",
+					"level": 65
+				},
+				{
+					"name": "Linux",
+					"level": 75
+				},
+				{
+					"name": "Apache HTTP Server",
+					"level": 75
+				},
+				{
+					"name": "Visual Studio",
+					"level": 95
+				},
+				{
+					"name": "Visual Studio Code",
+					"level": 90
+				},
+				{
+					"name": "Eclipse",
+					"level": 75
+				},
+				{
+					"name": "Six Sigma",
+					"level": 85
+				},
+				{
+					"name": "Scrum / Kanban",
+					"level": 85
+				},
+				{
+					"name": "Redmine Administration",
+					"level": 90
+				},
+				{
+					"name": "WordPress Administration",
+					"level": 80
+				}
 			]
 		},
 		{
 			"id": "ai",
 			"title": "Umělá inteligence & AI nástroje",
 			"skills": [
-				{ "name": "Google Gemini", "level": 85 },
-				{ "name": "GitHub Copilot", "level": 85 },
-				{ "name": "Antigravity", "level": 80 },
-				{ "name": "NotebookLM", "level": 80 }
+				{
+					"name": "Google Gemini",
+					"level": 85
+				},
+				{
+					"name": "GitHub Copilot",
+					"level": 85
+				},
+				{
+					"name": "Antigravity",
+					"level": 80
+				},
+				{
+					"name": "NotebookLM",
+					"level": 80
+				}
 			]
 		}
 	]
