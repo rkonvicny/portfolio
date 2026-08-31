@@ -44,28 +44,3 @@ export interface AppSettings {
 	pageSettings: PageSettings;
 	backgroundSettings: BackgroundSettings;
 }
-
-export const appSettings: AppSettings = {
-	pageSettings: {
-		enableStatusRow: false,
-		enableNameGlow: false,
-		enableNameGradient: false,
-		enableTypewriterSection: false,
-		enableButtonRow: false,
-		enableExtendedSectionHeader: false,
-		enableThemeSwitcher: true,
-		enableGlobalBackground: true,
-		enableGlassmorphism: true,
-		enableScrollParallax: true,
-		enableProjectsSection: true
-	},
-	backgroundSettings: {
-		spacing: 80,
-		pullRadius: 400,
-		pullStrength: 0.9,
-		nodeRadius: 1.5,
-		lineWidth: 1,
-		dampening: 0.01,
-		mouseDampening: 0.01
-	}
-};

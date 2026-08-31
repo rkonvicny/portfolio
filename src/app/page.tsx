@@ -1,16 +1,19 @@
 import { Contact, Experience, Footer, Hero, Navbar, Skills, Projects } from "@/components";
 import { PageBackground } from "@/components/page-background";
-import { appSettings } from "@/data/app-settings";
 import { di } from "@infrastructure/di";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
-	const [experience, skills, projects] = await Promise.all([
+	const [experience, skills, projects, personal, appSettings] = await Promise.all([
 		di.getExperienceUseCase.execute(),
 		di.getSkillsUseCase.execute(),
-		di.getProjectsUseCase.execute()
+		di.getProjectsUseCase.execute(),
+		di.getPersonalUseCase.execute(),
+		di.getSettingsUseCase.execute()
 	]);
 
-	const { enableGlobalBackground, enableGlassmorphism } = appSettings.pageSettings;
+	const { enableGlobalBackground, enableGlassmorphism, enableProjectsSection } = appSettings.pageSettings;
 
 	// Pokud je zapnutý globální background, ostatní sekce musí mít definované pozadí 
 	// buď průsvitné (glassmorphism) nebo pevné, aby přes něj plynule přejely.
@@ -23,15 +26,15 @@ export default async function Home() {
 	return (
 		<div className="min-h-screen flex flex-col relative overflow-hidden transition-colors duration-300">
 			{/* Globální interaktivní pozadí (pokud je zapnuto v nastavení) */}
-			{enableGlobalBackground && <PageBackground />}
+			{enableGlobalBackground && <PageBackground appSettings={appSettings} />}
 
 			{/* Hlavní navigace */}
-			<Navbar />
+			<Navbar personal={personal} pageSettings={appSettings.pageSettings} />
 
 			{/* Obsah stránky */}
 			<main className="flex-1 flex flex-col">
 				{/* Úvodní sekce (Hero) zůstává průhledná, pod ní svítí pozadí */}
-				<Hero />
+				<Hero personal={personal} appSettings={appSettings} />
 
 				{/* Ostatní sekce */}
 				<div className={sectionBgClass}>
@@ -39,19 +42,19 @@ export default async function Home() {
 					<Skills categories={skills} />
 
 					{/* Projekty */}
-					<Projects projects={projects} />
+					{enableProjectsSection && <Projects projects={projects} />}
 
 					{/* Zkušenosti (Experience Timeline) */}
 					<Experience experience={experience} />
 
 					{/* Kontakt (Contact Form) */}
-					<Contact />
+					<Contact personal={personal} />
 				</div>
 			</main>
 
 			<div className={sectionBgClass}>
 				{/* Patička webu */}
-				<Footer />
+				<Footer personal={personal} />
 			</div>
 		</div>
 	);

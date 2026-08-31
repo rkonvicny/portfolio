@@ -28,7 +28,30 @@ window.IntersectionObserver = mockIntersectionObserver;
 
 describe('Navbar Component', () => {
   it('renders desktop navigation links', () => {
-    render(<ThemeProvider><Navbar /></ThemeProvider>);
+    render(<ThemeProvider><Navbar personal={{
+    name: "John Doe",
+    role: "Developer",
+    email: "john@doe.com",
+    phone: "+123456789",
+    location: "New York",
+    socials: [{ platform: "GitHub", url: "https://github.com/johndoe", icon: "github" }],
+    bio: "Test bio",
+    typewriterWords: ["Dev", "Arch"],
+    siteTitle: "johndoe.com",
+    languages: []
+}} pageSettings={{
+    enableStatusRow: true,
+    enableNameGlow: true,
+    enableNameGradient: true,
+    enableTypewriterSection: true,
+    enableButtonRow: true,
+    enableExtendedSectionHeader: true,
+    enableThemeSwitcher: true,
+    enableGlobalBackground: true,
+    enableGlassmorphism: true,
+    enableScrollParallax: true,
+    enableProjectsSection: true
+}} /></ThemeProvider>);
 
     // There are mobile and desktop links, use getAllByText
     expect(screen.getAllByText('Domů').length).toBeGreaterThan(0);
@@ -39,7 +62,30 @@ describe('Navbar Component', () => {
 
   it('toggles theme correctly', async () => {
     // const user = userEvent.setup();
-    render(<ThemeProvider><Navbar /></ThemeProvider>);
+    render(<ThemeProvider><Navbar personal={{
+    name: "John Doe",
+    role: "Developer",
+    email: "john@doe.com",
+    phone: "+123456789",
+    location: "New York",
+    socials: [{ platform: "GitHub", url: "https://github.com/johndoe", icon: "github" }],
+    bio: "Test bio",
+    typewriterWords: ["Dev", "Arch"],
+    siteTitle: "johndoe.com",
+    languages: []
+}} pageSettings={{
+    enableStatusRow: true,
+    enableNameGlow: true,
+    enableNameGradient: true,
+    enableTypewriterSection: true,
+    enableButtonRow: true,
+    enableExtendedSectionHeader: true,
+    enableThemeSwitcher: true,
+    enableGlobalBackground: true,
+    enableGlassmorphism: true,
+    enableScrollParallax: true,
+    enableProjectsSection: true
+}} /></ThemeProvider>);
 
     // Initially the theme toggle button should be present
     const toggleBtns = screen.getAllByRole('button');

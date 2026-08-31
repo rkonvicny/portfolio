@@ -2,17 +2,15 @@
 
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import portfolioData from "@/data/portfolio.json";
-import { appSettings } from "@/data/app-settings";
 import { FaGithub } from "react-icons/fa";
 import { FiMoon, FiSun, FiMenu, FiX } from "react-icons/fi";
+import { PersonalData } from "@domain/entities/personal";
+import { PageSettings } from "@domain/entities/app-settings";
 
-const { pageSettings } = appSettings;
-const { personal } = portfolioData;
-
-const githubSocial = personal.socials?.find(
-	(s: { icon: string; url: string }) => s.icon === "github"
-);
+interface NavbarProps {
+	personal: PersonalData;
+	pageSettings: PageSettings;
+}
 
 interface NavLink {
 	label: string;
@@ -27,13 +25,21 @@ const navLinks: NavLink[] = [
 	{ label: "Kontakt", href: "#contact" }
 ];
 
-export const Navbar = () => {
+export const Navbar = ({ personal, pageSettings }: NavbarProps) => {
 	const { setTheme, resolvedTheme } = useTheme();
 	const [mounted, setMounted] = useState(false);
 	const [activeSection, setActiveSection] = useState("home");
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
-	const siteTitle = portfolioData.personal.siteTitle.split(".");
+	const siteTitle = personal.siteTitle?.split(".") || ["konr", "cz"];
+	const activeNavLinks = navLinks.filter((link) => {
+		if (link.href === "#projects" && !pageSettings.enableProjectsSection) return false;
+		return true;
+	});
+
+	const githubSocial = personal.socials?.find(
+		(s: { icon: string; url: string }) => s.icon === "github"
+	);
 
 	useEffect(() => {
 		// eslint-disable-next-line
@@ -46,7 +52,7 @@ export const Navbar = () => {
 			setScrolled(window.scrollY > 20);
 
 			// Aktualizace aktivní sekce podle scrollování
-			const sections = navLinks.map((link) => link.href.substring(1));
+			const sections = activeNavLinks.map((link) => link.href.substring(1));
 			let current = sections[0];
 
 			// Procházíme sekce odzadu a hledáme tu, jejíž vršek je alespoň v horní polovině okna
@@ -118,7 +124,7 @@ export const Navbar = () => {
 					{/* Desktop Nav Links */}
 					<div className="hidden md:flex items-center gap-8">
 						<ul className="flex items-center gap-6">
-							{navLinks.map((link) => {
+							{activeNavLinks.map((link) => {
 								const id = link.href.substring(1);
 								const isActive = activeSection === id;
 								return (
@@ -240,7 +246,7 @@ export const Navbar = () => {
 			>
 				<div className="mt-16 flex flex-col gap-6">
 					<ul className="flex flex-col gap-4">
-						{navLinks.map((link) => {
+						{activeNavLinks.map((link) => {
 							const id = link.href.substring(1);
 							const isActive = activeSection === id;
 							return (
@@ -262,7 +268,7 @@ export const Navbar = () => {
 					</ul>
 				</div>
 				<div className="text-xs text-center text-zinc-500 dark:text-zinc-600 border-t border-zinc-200 dark:border-zinc-800 pt-4">
-					konr.cz © 2026
+					{siteTitle.join(".")} © 2026
 				</div>
 			</div>
 			{/* Drawer Overlay */}

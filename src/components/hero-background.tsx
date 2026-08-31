@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform, useAnimationFrame, useScroll } from "motion/react";
 import { useTheme } from "next-themes";
-import { appSettings } from "@/data/app-settings";
 
 interface Node {
 	baseX: number;
@@ -22,9 +21,10 @@ export interface HeroBackgroundProps {
 		dampening?: number;
 		mouseDampening?: number;
 	};
+	enableScrollParallax?: boolean;
 }
 
-export const HeroBackground = ({ settings }: HeroBackgroundProps) => {
+export const HeroBackground = ({ settings, enableScrollParallax = true }: HeroBackgroundProps) => {
 	const {
 		spacing = 80,
 		pullRadius = 400,
@@ -35,8 +35,6 @@ export const HeroBackground = ({ settings }: HeroBackgroundProps) => {
 		mouseDampening = 0.01
 	} = settings ?? {};
 	
-	const { enableScrollParallax } = appSettings.pageSettings;
-
 	const mouseX = useMotionValue(0);
 	const mouseY = useMotionValue(0);
 

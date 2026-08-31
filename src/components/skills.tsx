@@ -42,7 +42,7 @@ export const Skills = ({ categories }: SkillsProps) => {
 
 			<div className="max-w-6xl mx-auto px-6 relative z-10">
 				{/* Nadpis sekce */}
-				<SectionHeader subtitle="Schopnosti" title="Co všechno dokážu vytvořit" />
+				<SectionHeader subtitle="Schopnosti" title="Co všechno dokážu vytvořit" enableExtendedSectionHeader={true} />
 
 				{/* Mřížka kategorií */}
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

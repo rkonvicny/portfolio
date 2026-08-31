@@ -32,6 +32,8 @@ COPY --from=builder /app/public ./public
 # Zkopíruje se pouze to nutné pro běh, vynechá se obří složka node_modules
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# Zkopíruje se datová složka, aby aplikace nespadla, pokud nebude připojen volume
+COPY --from=builder --chown=nextjs:nodejs /app/src/data ./src/data
 
 USER nextjs
 EXPOSE 3000

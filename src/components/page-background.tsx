@@ -1,10 +1,14 @@
 "use client";
 
 import React from "react";
-import { appSettings } from "@/data/app-settings";
 import { HeroBackground } from "./hero-background";
+import { AppSettings } from "@domain/entities/app-settings";
 
-export const PageBackground = () => {
+interface PageBackgroundProps {
+	appSettings: AppSettings;
+}
+
+export const PageBackground = ({ appSettings }: PageBackgroundProps) => {
 	const { pageSettings, backgroundSettings } = appSettings;
 
 	// Zda se má background zafixovat globálně (parallax)
@@ -20,7 +24,7 @@ export const PageBackground = () => {
 		>
 			{/* Interaktivní parallax pozadí (mesh) */}
 			<div className="absolute inset-0 pointer-events-auto">
-				<HeroBackground settings={backgroundSettings} />
+				<HeroBackground settings={backgroundSettings} enableScrollParallax={pageSettings.enableScrollParallax} />
 			</div>
 
 			{/* Pozadí s neonovými zářemi (glow-bg) */}

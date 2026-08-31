@@ -21,7 +21,30 @@ vi.mock('@/data/portfolio.json', () => ({
 
 describe('Hero Component', () => {
   it('renders correctly', () => {
-    render(<Hero />);
+    render(<Hero personal={{
+    name: "John Doe",
+    role: "Developer",
+    email: "john@doe.com",
+    phone: "+123456789",
+    location: "New York",
+    socials: [{ platform: "GitHub", url: "https://github.com/johndoe", icon: "github" }],
+    bio: "Test bio",
+    typewriterWords: ["Dev", "Arch"],
+    siteTitle: "johndoe.com",
+    languages: []
+}} pageSettings={{
+    enableStatusRow: true,
+    enableNameGlow: true,
+    enableNameGradient: true,
+    enableTypewriterSection: true,
+    enableButtonRow: true,
+    enableExtendedSectionHeader: true,
+    enableThemeSwitcher: true,
+    enableGlobalBackground: true,
+    enableGlassmorphism: true,
+    enableScrollParallax: true,
+    enableProjectsSection: true
+}} />);
 
     // Check background mock
     expect(screen.getByTestId('hero-background')).toBeInTheDocument();

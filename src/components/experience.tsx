@@ -18,7 +18,7 @@ export const Experience = ({ experience }: ExperienceProps) => {
 
 			<div className="max-w-4xl mx-auto px-6 relative z-10">
 				{/* Nadpis sekce */}
-				<SectionHeader subtitle="Kariéra" title="Pracovní zkušenosti a vzdělání" />
+				<SectionHeader subtitle="Kariéra" title="Pracovní zkušenosti a vzdělání" enableExtendedSectionHeader={true} />
 
 				{/* Vertikální časová osa */}
 				<div className="relative border-l border-zinc-200 dark:border-zinc-800 ml-4 md:ml-6 flex flex-col gap-12">

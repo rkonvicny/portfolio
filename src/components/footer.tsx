@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import portfolioData from "@/data/portfolio.json";
 import { FaGithub, FaLinkedin, FaTwitter, FaArrowUp } from "react-icons/fa";
 import type { IconType } from "react-icons";
+import { PersonalData } from "@domain/entities/personal";
 
 const iconMap: Record<string, IconType> = {
 	github: FaGithub,
@@ -11,9 +11,13 @@ const iconMap: Record<string, IconType> = {
 	twitter: FaTwitter
 };
 
-export const Footer = () => {
+interface FooterProps {
+	personal: PersonalData;
+}
+
+export const Footer = ({ personal }: FooterProps) => {
 	const currentYear = new Date().getFullYear();
-	const socials = portfolioData.personal.socials || [];
+	const socials = personal.socials || [];
 
 	const handleScrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
 		e.preventDefault();
@@ -26,7 +30,7 @@ export const Footer = () => {
 				{/* Copyright */}
 				<div className="text-center md:text-left select-none order-3 md:order-1">
 					<p className="text-xs text-zinc-500 dark:text-zinc-500">
-						© {currentYear} {portfolioData.personal.siteTitle}. Všechna práva vyhrazena.
+						© {currentYear} {personal.siteTitle}. Všechna práva vyhrazena.
 					</p>
 				</div>
 

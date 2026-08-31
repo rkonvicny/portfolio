@@ -17,13 +17,35 @@ vi.mock('@/data/portfolio.json', () => ({
 
 describe('Footer Component', () => {
   it('renders copyright text with site title', () => {
-    render(<Footer />);
+    render(<Footer personal={{
+    name: "John Doe",
+    role: "Developer",
+    email: "john@doe.com",
+    phone: "+123456789",
+    location: "New York",
+    socials: [{ platform: "GitHub", url: "https://github.com/johndoe", icon: "github" }],
+    bio: "Test bio",
+    typewriterWords: ["Dev", "Arch"],
+    siteTitle: "johndoe.com",
+    languages: []
+}} />);
     const year = new Date().getFullYear();
     expect(screen.getByText(`© ${year} John Doe. Všechna práva vyhrazena.`)).toBeInTheDocument();
   });
 
   it('renders social links correctly', () => {
-    render(<Footer />);
+    render(<Footer personal={{
+    name: "John Doe",
+    role: "Developer",
+    email: "john@doe.com",
+    phone: "+123456789",
+    location: "New York",
+    socials: [{ platform: "GitHub", url: "https://github.com/johndoe", icon: "github" }],
+    bio: "Test bio",
+    typewriterWords: ["Dev", "Arch"],
+    siteTitle: "johndoe.com",
+    languages: []
+}} />);
 
     // The links in the footer might not have aria-label if we only mock socials array, but wait, the component maps them.
     // Let's use getByRole without name and check href instead.
@@ -37,7 +59,18 @@ describe('Footer Component', () => {
   });
 
   it('renders scroll to top button', () => {
-    render(<Footer />);
+    render(<Footer personal={{
+    name: "John Doe",
+    role: "Developer",
+    email: "john@doe.com",
+    phone: "+123456789",
+    location: "New York",
+    socials: [{ platform: "GitHub", url: "https://github.com/johndoe", icon: "github" }],
+    bio: "Test bio",
+    typewriterWords: ["Dev", "Arch"],
+    siteTitle: "johndoe.com",
+    languages: []
+}} />);
     const topLink = screen.getByRole('link', { name: /Zpět nahoru/i });
     expect(topLink).toBeInTheDocument();
     expect(topLink).toHaveAttribute('href', '#home');

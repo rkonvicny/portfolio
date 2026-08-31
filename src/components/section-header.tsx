@@ -1,20 +1,18 @@
 import React from "react";
-import { appSettings } from "@/data/app-settings";
-
-const { pageSettings } = appSettings;
 
 interface SectionHeaderProps {
 	title: string;
 	subtitle: string;
+	enableExtendedSectionHeader?: boolean;
 }
 
-export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, subtitle }) => {
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ title, subtitle, enableExtendedSectionHeader = true }) => {
 	return (
 		<div className="text-center mb-16">
 			<h2 className="text-xs font-bold tracking-widest text-brand-primary dark:text-brand-secondary uppercase mb-3">
 				{subtitle}
 			</h2>
-			{pageSettings.enableExtendedSectionHeader ? (
+			{enableExtendedSectionHeader ? (
 				<>
 					<p className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white mb-4">
 						{title}

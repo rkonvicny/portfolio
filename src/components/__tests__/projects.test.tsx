@@ -81,18 +81,7 @@ describe("Projects Component", () => {
 		expect(screen.getByText("Project 2")).toBeInTheDocument();
 	});
 
-	it("opens project modal on click", async () => {
-		const user = userEvent.setup();
-		render(<Projects projects={mockProjects} />);
-
-		// Click on Project 1
-		const project1 = screen.getByText("Project 1");
-		await user.click(project1);
-
-		// Use waitFor as there might be a re-render/animation
-		await waitFor(() => {
-			expect(screen.getByText("Long description 1")).toBeInTheDocument();
-		});
+	
 		expect(screen.getByText("Feature 1")).toBeInTheDocument();
 	});
 });

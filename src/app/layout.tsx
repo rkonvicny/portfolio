@@ -3,6 +3,8 @@ import { Ubuntu_Sans, Ubuntu_Sans_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { Toaster } from "@/components/ui/sonner";
+import { di } from "@infrastructure/di";
+import { cn } from "@/lib/utils";
 
 const ubuntu = Ubuntu_Sans({
 	variable: "--font-ubuntu-sans",
@@ -14,13 +16,13 @@ const ubuntuMono = Ubuntu_Sans_Mono({
 	subsets: ["latin"]
 });
 
-import portfolioData from "@/data/portfolio.json";
-import { cn } from "@/lib/utils";
-
-export const metadata: Metadata = {
-	title: `${portfolioData.personal.siteTitle} | ${portfolioData.personal.role}`,
-	description: portfolioData.personal.bio
-};
+export async function generateMetadata(): Promise<Metadata> {
+	const personalData = await di.getPersonalUseCase.execute();
+	return {
+		title: `${personalData.siteTitle} | ${personalData.role}`,
+		description: personalData.bio
+	};
+}
 
 export default function RootLayout({
 	children

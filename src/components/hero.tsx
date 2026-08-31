@@ -2,15 +2,18 @@
 
 import React, { useEffect, useState } from "react";
 import { FiArrowDown } from "react-icons/fi";
-import portfolioData from "@/data/portfolio.json";
-import { appSettings } from "@/data/app-settings";
 import { PageBackground } from "./page-background";
+import { PersonalData } from "@domain/entities/personal";
+import { AppSettings } from "@domain/entities/app-settings";
 
-const { personal } = portfolioData;
-const { pageSettings } = appSettings;
-const typewriterWords = personal.typewriterWords;
+interface HeroProps {
+	personal: PersonalData;
+	appSettings: AppSettings;
+}
 
-export const Hero = () => {
+export const Hero = ({ personal, appSettings }: HeroProps) => {
+	const { pageSettings } = appSettings;
+	const typewriterWords = personal.typewriterWords;
 	const [wordIndex, setWordIndex] = useState(0);
 	const [currentText, setCurrentText] = useState("");
 	const [isDeleting, setIsDeleting] = useState(false);
@@ -20,6 +23,7 @@ export const Hero = () => {
 		let timer: NodeJS.Timeout;
 
 		const handleType = () => {
+			if (!typewriterWords || typewriterWords.length === 0) return;
 			const fullWord = typewriterWords[wordIndex];
 
 			if (!isDeleting) {
@@ -49,7 +53,7 @@ export const Hero = () => {
 		timer = setTimeout(handleType, typingSpeed);
 
 		return () => clearTimeout(timer);
-	}, [currentText, isDeleting, wordIndex, typingSpeed]);
+	}, [currentText, isDeleting, wordIndex, typingSpeed, typewriterWords]);
 
 	const handleScrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
 		e.preventDefault();
@@ -67,7 +71,7 @@ export const Hero = () => {
 			className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden"
 		>
 			{/* Pozadí - buď lokální pro hero, nebo ho obstará page.tsx globálně */}
-			{!pageSettings.enableGlobalBackground && <PageBackground />}
+			{!pageSettings.enableGlobalBackground && <PageBackground appSettings={appSettings} />}
 
 			<div className="relative z-10 max-w-4xl mx-auto px-6 text-center select-none animate-fade-in-up">
 				{pageSettings.enableStatusRow && (
@@ -98,7 +102,7 @@ export const Hero = () => {
 						{personal.name}
 					</span>
 				</h1>
-				{pageSettings.enableTypewriterSection && (
+				{pageSettings.enableTypewriterSection && typewriterWords?.length > 0 && (
 					<>
 						{/* Dynamický podtitulek s psacím efektem */}
 						<h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-zinc-600 dark:text-zinc-400 mb-8 min-h-10">

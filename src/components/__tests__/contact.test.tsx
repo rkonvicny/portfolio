@@ -33,12 +33,34 @@ describe("Contact Component", () => {
 	});
 
 	it("renders section header", () => {
-		render(<Contact />);
+		render(<Contact personal={{
+    name: "John Doe",
+    role: "Developer",
+    email: "john@doe.com",
+    phone: "+123456789",
+    location: "New York",
+    socials: [{ platform: "GitHub", url: "https://github.com/johndoe", icon: "github" }],
+    bio: "Test bio",
+    typewriterWords: ["Dev", "Arch"],
+    siteTitle: "johndoe.com",
+    languages: []
+}} />);
 		expect(screen.getByText("Kontakt")).toBeInTheDocument();
 	});
 
 	it("renders contact information", () => {
-		render(<Contact />);
+		render(<Contact personal={{
+    name: "John Doe",
+    role: "Developer",
+    email: "john@doe.com",
+    phone: "+123456789",
+    location: "New York",
+    socials: [{ platform: "GitHub", url: "https://github.com/johndoe", icon: "github" }],
+    bio: "Test bio",
+    typewriterWords: ["Dev", "Arch"],
+    siteTitle: "johndoe.com",
+    languages: []
+}} />);
 		expect(screen.getByText("john@doe.com")).toBeInTheDocument();
 		expect(screen.getByText("+123456789")).toBeInTheDocument();
 		expect(screen.getByText("New York")).toBeInTheDocument();
@@ -46,7 +68,18 @@ describe("Contact Component", () => {
 
 	it("validates form submission", async () => {
 		const user = userEvent.setup();
-		render(<Contact />);
+		render(<Contact personal={{
+    name: "John Doe",
+    role: "Developer",
+    email: "john@doe.com",
+    phone: "+123456789",
+    location: "New York",
+    socials: [{ platform: "GitHub", url: "https://github.com/johndoe", icon: "github" }],
+    bio: "Test bio",
+    typewriterWords: ["Dev", "Arch"],
+    siteTitle: "johndoe.com",
+    languages: []
+}} />);
 
 		// Find inputs
 		const submitBtn = screen.getByRole("button", { name: /Odeslat zprávu/i });

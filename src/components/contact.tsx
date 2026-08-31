@@ -1,15 +1,19 @@
 import React from "react";
-import portfolioData from "@/data/portfolio.json";
 import { SectionHeader } from "./section-header";
 import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 import { ContactForm } from "./contact-form";
+import { PersonalData } from "@domain/entities/personal";
 
-export const Contact = () => {
+interface ContactProps {
+	personal: PersonalData;
+}
+
+export const Contact = ({ personal }: ContactProps) => {
 	return (
 		<section id="contact" className="py-24 relative">
 			<div className="max-w-6xl mx-auto px-6 relative z-10">
 				{/* Nadpis sekce */}
-				<SectionHeader subtitle="Kontakt" title="Napište mi zprávu" />
+				<SectionHeader subtitle="Kontakt" title="Napište mi zprávu" enableExtendedSectionHeader={true} />
 
 				{/* Rozdělení: Kontaktní informace vlevo, Formulář vpravo */}
 				<div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
@@ -35,10 +39,10 @@ export const Contact = () => {
 										E-mail
 									</h4>
 									<a
-										href={`mailto:${portfolioData.personal.email}`}
+										href={`mailto:${personal.email}`}
 										className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 hover:text-brand-primary dark:hover:text-brand-secondary transition-colors"
 									>
-										{portfolioData.personal.email}
+										{personal.email}
 									</a>
 								</div>
 							</div>
@@ -53,7 +57,7 @@ export const Contact = () => {
 										Telefon
 									</h4>
 									<p className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
-										{portfolioData.personal.phone}
+										{personal.phone}
 									</p>
 								</div>
 							</div>
@@ -68,7 +72,7 @@ export const Contact = () => {
 										Lokalita
 									</h4>
 									<p className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
-										{portfolioData.personal.location}
+										{personal.location}
 									</p>
 								</div>
 							</div>

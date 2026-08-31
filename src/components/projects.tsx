@@ -35,7 +35,7 @@ export const Projects = ({ projects }: ProjectsProps) => {
 		<section id="projects" className="py-24 bg-zinc-50/50 dark:bg-zinc-950/20 relative">
 			<div className="max-w-6xl mx-auto px-6">
 				{/* Nadpis sekce */}
-				<SectionHeader subtitle="Portfolio" title="Vybrané projekty" />
+				<SectionHeader subtitle="Portfolio" title="Vybrané projekty" enableExtendedSectionHeader={true} />
 
 				{/* Filtry */}
 				<div className="flex flex-wrap items-center justify-center gap-3 mb-12 select-none">
