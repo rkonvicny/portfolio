@@ -38,6 +38,10 @@ export interface PageSettings {
 	enableScrollParallax: boolean;
 	/** Zobrazení sekce projektů */
 	enableProjectsSection: boolean;
+	/** Zobrazení sociálních odkazů v patičce */
+	enableSocialLinks: boolean;
+	/** Zobrazení tlačítka GitHub v Navbaru */
+	enableGithubButton: boolean;
 }
 
 export interface AppSettings {

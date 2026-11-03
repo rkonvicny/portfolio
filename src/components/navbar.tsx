@@ -148,7 +148,8 @@ export const Navbar = ({ personal, pageSettings }: NavbarProps) => {
 							})}
 						</ul>
 						{/* GitHub Link (Desktop) */}
-						{githubSocial && (
+
+						{githubSocial && pageSettings.enableGithubButton && (
 							<a
 								href={githubSocial.url}
 								target="_blank"
@@ -189,7 +190,7 @@ export const Navbar = ({ personal, pageSettings }: NavbarProps) => {
 					{/* Mobile Menu Actions */}
 					<div className="flex items-center gap-4 md:hidden">
 						{/* GitHub Link (Mobile) */}
-						{githubSocial && (
+						{githubSocial && pageSettings.enableGithubButton && (
 							<a
 								href={githubSocial.url}
 								target="_blank"

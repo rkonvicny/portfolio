@@ -4,7 +4,7 @@ import React from "react";
 import { FaGithub, FaLinkedin, FaTwitter, FaArrowUp } from "react-icons/fa";
 import type { IconType } from "react-icons";
 import { PersonalData } from "@domain/entities/personal";
-
+import { PageSettings } from "@domain/entities/app-settings";
 const iconMap: Record<string, IconType> = {
 	github: FaGithub,
 	linkedin: FaLinkedin,
@@ -13,9 +13,10 @@ const iconMap: Record<string, IconType> = {
 
 interface FooterProps {
 	personal: PersonalData;
+	pageSettings: PageSettings;
 }
 
-export const Footer = ({ personal }: FooterProps) => {
+export const Footer = ({ personal, pageSettings }: FooterProps) => {
 	const currentYear = new Date().getFullYear();
 	const socials = personal.socials || [];
 
@@ -45,31 +46,31 @@ export const Footer = ({ personal }: FooterProps) => {
 						<FaArrowUp className="w-4 h-4" />
 					</a>
 				</div>
-
-				{/* Sociální sítě */}
-				<div className="flex items-center gap-5 order-2 md:order-3">
-					{socials.map((social) => {
-						const Icon = iconMap[social.icon];
-						return (
-							<a
-								key={social.platform}
-								href={social.url}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="p-2.5 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-brand-primary dark:hover:text-brand-secondary hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-all"
-								aria-label={social.platform}
-							>
-								{Icon ? (
-									<Icon className="w-5 h-5" />
-								) : (
-									<span className="text-xs font-bold px-1 uppercase">
-										{social.platform.substring(0, 2)}
-									</span>
-								)}
-							</a>
-						);
-					})}
-				</div>
+				{pageSettings.enableSocialLinks && (
+					<div className="flex items-center gap-5 order-2 md:order-3">
+						{socials.map((social) => {
+							const Icon = iconMap[social.icon];
+							return (
+								<a
+									key={social.platform}
+									href={social.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="p-2.5 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-brand-primary dark:hover:text-brand-secondary hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-all"
+									aria-label={social.platform}
+								>
+									{Icon ? (
+										<Icon className="w-5 h-5" />
+									) : (
+										<span className="text-xs font-bold px-1 uppercase">
+											{social.platform.substring(0, 2)}
+										</span>
+									)}
+								</a>
+							);
+						})}
+					</div>
+				)}
 			</div>
 		</footer>
 	);

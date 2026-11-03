@@ -54,7 +54,7 @@ export default async function Home() {
 
 			<div className={sectionBgClass}>
 				{/* Patička webu */}
-				<Footer personal={personal} />
+				<Footer personal={personal} pageSettings={appSettings.pageSettings} />
 			</div>
 		</div>
 	);

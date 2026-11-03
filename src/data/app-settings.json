@@ -5,12 +5,14 @@
 		"enableNameGradient": false,
 		"enableTypewriterSection": false,
 		"enableButtonRow": false,
-		"enableExtendedSectionHeader": false,
+		"enableExtendedSectionHeader": true,
 		"enableThemeSwitcher": true,
 		"enableGlobalBackground": true,
 		"enableGlassmorphism": true,
 		"enableScrollParallax": true,
-		"enableProjectsSection": false
+		"enableProjectsSection": false,
+		"enableSocialLinks": false,
+		"enableGithubButton": false
 	},
 	"backgroundSettings": {
 		"spacing": 80,
