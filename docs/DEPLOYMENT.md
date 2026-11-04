@@ -110,8 +110,17 @@ Při jakékoliv budoucí úpravě zdrojových kódů vašeho portfolia je postup
    **Možnost A: Přes terminál (Nejrychlejší a spolehlivé)**
 
    ```bash
-   cd ~/docker/portfolio
-   docker compose up -d
+
+    # 1. Synchronizace zdrojáků do ~/projects/portfolio na .52
+
+    rsync -a --delete \
+      --exclude node_modules --exclude .next --exclude .git --exclude coverage \
+      ~/projects/portfolio/ /mnt/mini-1/projects/portfolio/
+
+    # 2. Build obrazu a restart kontejneru na .52
+
+    ssh konr@192.168.68.52 'cd ~/projects/portfolio && docker build -t portfolio-web:latest . && cd ~/docker/portfolio && docker compose up -d'
+
    ```
 
    *(Docker si všimne nového buildu obrazu, smaže starý kontejner a automaticky nahodí nový s aktuálním kódem).*
